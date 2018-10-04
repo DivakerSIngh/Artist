@@ -1,0 +1,709 @@
+<!-- <header class="dashboard-header">
+
+<div class="container-fluid">
+<div class="col-md-6 col-sm-6 col-sx-12"><a href="#"><img class="img-responsive" width="150" src="images/logo-das.png" /></a></div>
+<div class="col-md-6 col-sm-6 col-sx-12"><p class="log-out-link"><a href="#" data-toggle="modal" data-target="#log-out-modal-id"><i class="fa fa-sign-in" aria-hidden="true"></i> Log Out</a></p></div>
+</div>
+
+</header> -->
+<div id="loading">
+  <img id="loading-image" src="images/example.gif" alt="Loading..." />
+</div>
+<section class="dashboard-section">
+  <div class="container-fluid dashboard-content">
+  <!--  <div class="profile-menu">
+    <ul class="profile-menu-list">
+
+      <li>
+        <a href="#">
+          <img class="img-simp" width="35" src="images/profile-1.png" />
+          <img class="img-active" width="35" src="images/profile-1-active.png" />
+        </a>
+        <span>Ads Near By</span>
+      </li>
+      <li>
+        <a href="#">
+          <img class="img-simp" width="35" src="images/profile-2.png" />
+          <img class="img-active" width="35" src="images/profile-2-active.png" />
+        </a>
+        <span>My ADs</span>
+      </li>
+      <li class="active">
+        <a href="#">
+          <img class="img-simp" width="35" src="images/profile-5.png" />
+          <img class="img-active" width="35" src="images/profile-5-active.png" />
+        </a>
+        <span>Community</span>
+      </li>
+      <li>
+        <a href="#">
+          <img class="img-simp" width="35" src="images/profile-3.png" />
+          <img class="img-active" width="35" src="images/profile-3-active.png" />
+        </a>
+        <span>Sell & Shop</span>
+      </li>
+      <li>
+        <a href="#">
+          <img class="img-simp" width="35" src="images/profile-4.png" />
+          <img class="img-active" width="35" src="images/profile-4-active.png" />
+        </a>
+        <span>Artists</span>
+      </li>
+      
+      
+    </ul>
+   </div> -->
+
+   <div class="col-ms-12">
+   	<div class="col-sm-12">
+   		<div class="col-sm-2 profile-box">
+   			<div class="profile-img" ng-show="userData.data.profileImage"><img  style="height:120px" class="img-responsive" src="{{userData.data.profileImage}}" /></div>
+            <div class="profile-img" ng-show="!userData.data.profileImage"><img style="height:120px" class="img-responsive" src="images/upload-img.png" /></div>
+   		</div>
+   		<div class="col-sm-10 padd-left-0">
+   			<h3 class="profile-welcome">Welcome<span>,</span></h3>
+   			<ul class="profile-details">
+               <li class="profile-das-name"><a href="">{{userData.data.firstName}} {{userData.data.lastName}}</a></li>
+               <li class="profile-das-mass"><span>0</span><a ui-sref="communication">Messages</a></li>
+               <li class="profile-das-noti"><a href="">Notifications</a></li>
+   			</ul>
+   			<ul class="profile-sub-head">
+   				<li class="profile-sub-img"><a class="" href="">Profile</a></li>
+   				<li class="profile-sub-pas"><a class="" href="" data-toggle="modal" data-target="#change-password-id">Change Password</a></li>
+          <li class="profile-sub-massa" ng-show="userData.data.roleId=='1'"><a class="" href="" data-toggle="modal" data-target="#subscribe-modale-id">Membership <span>$30.9/Month</span></a></li>
+   			</ul>
+   		</div>
+   	</div>
+
+    <div class="col-sm-12">
+   		<div class="col-sm-2 profile-box">
+   			<h2 class="adds-near">My Profile</h2>
+        <ul class="my-ads-tab" role="tablist" ng-show="userData.data.roleId=='1'">
+           <li class="active"><a href="" data-target="#posted-ads" role="tab" data-toggle="tab">Personal Info</a></li>
+           <li><a href="" data-target="#saved-ads" role="tab" data-toggle="tab">Featured Video & Photos</a></li>
+        </ul>
+   		</div>
+   		<div class="col-sm-10 padd-left-0">
+   			    <!-- Tab panes -->
+         <div class="col-sm-10 padd-left-0">   
+         <div class="tab-content">
+            
+            <div role="tabpanel" class="tab-pane active" id="posted-ads">
+              
+              <div class="col-sm-12 padd-0 filter">
+                 <div class="col-sm-5 padd-0">
+                  
+                </div>
+                <div class="col-sm-7 padd-0">
+                   <p class="share-some-thing"><a href="" data-toggle="modal" data-target="#signup-modal-id"><span>Edit P</span>rofile</a></p>
+                </div>
+              </div>
+                <div class="col-sm-12 padd-0 scroll-right hight-list mCustomScrollbar" data-mcs-theme="minimal-dark" style="height: 58vh">
+                  <div class="col-sm-12 padd-0">
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">Name</p>
+                      <p class="profile-discri">{{userData.data.firstName}} {{userData.data.lastName}}</p>
+                    </div>
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">City</p>
+                      <p class="profile-discri"> {{userData.data.city}}</p>
+                    </div>
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">State</p>
+                      <p class="profile-discri">{{userData.data.state}}</p>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 padd-0 mar-top-30">
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">Denomination</p>
+                      <p class="profile-discri">{{userData.data.denomination}}</p>
+                    </div>
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">Website</p>
+                      <p class="profile-discri">{{userData.data.website}}</p>
+                    </div>
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">Position Interest</p>
+                      <p class="profile-discri">{{userData.data.interest}}</p>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 padd-0 mar-top-30" ng-show="userData.data.roleId=='1'">
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">Degree / Certifications</p>
+                      <p class="profile-discri">{{userData.data.degree}}</p>
+                    </div>
+                    <div class="col-sm-4 padd-0">
+                      <p class="profile-titel">Skills</p>
+                      <p class="profile-discri">{{userData.data.skill}}</p>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 padd-0 mar-top-30">
+                    <p class="profile-titel">About</p>
+                      <p class="profile-discri">{{userData.data.aboutUs}}</p>
+                  </div>
+
+                 </div>
+
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="saved-ads">
+
+              <div class="col-sm-12 padd-0 space-sec">
+                 <div class="col-sm-5 padd-0">
+                  
+                </div>
+                <div class="col-sm-7 padd-0">
+                   <p class="share-some-thing"><a href="" data-toggle="modal" data-target="#signup-modal-id"><span>Edit P</span>rofile</a></p>
+                </div>
+              </div>
+              
+                <div class="col-sm-12 padd-0 scroll-right hight-list mCustomScrollbar" data-mcs-theme="minimal-dark" style="height: 60vh">
+
+                  <div class="col-sm-12">
+                    <ul class="upload-video">
+                        <li ng-repeat="mediaUrl in userData.data.media"><img width="220" height="110" src="{{mediaUrl.url}}"></li>
+                       <!--  <li><img width="160" height="110" src="images/video2.jpg"></li>
+                        <li><img width="160" height="110" src="images/video2.jpg"></li>
+                        <li><img width="90" id="OpenImgUpload2" height="80" src="images/add-btn.png"> <input type="file" id="imgupload2" style="display:none"/> </li> -->
+                   </ul>
+                   <div class="col-sm-8 col-md-offset-4" style="padding-top: 10px; padding-bottom: 10px;">
+                     <div class="checkbox my-check">
+                    <label>
+                      <input class="check-input" type="checkbox"> Featured Profile Video
+                    </label>
+                   </div>
+                   </div>
+                   <!-- <ul class="upload-video">
+                        <li><img width="150" height="90" src="images/video1.jpg"></li>
+                        <li><img width="150" height="90" src="images/video2.jpg"></li>
+                        <li><img width="150" height="90" src="images/video2.jpg"></li>
+                        <li><img width="150" height="90" src="images/video2.jpg"></li>
+                        <li></li>
+                   </ul> -->
+                  </div>
+              
+                </div>
+
+
+            </div>
+            
+            
+
+         </div>
+   		
+
+   		</div>
+
+
+
+   	</div>
+   </div>
+   </div>
+
+
+
+ </div>
+	
+</section>
+
+ <div ng-include="'templates/footer.html'"></div>
+
+<!-- <footer class="dashboard-footer">
+<div class="container">
+<div class="col-md-4">
+  <p class="das-copyright">2017 © Judah’s Link</p>
+</div>
+<div class="col-md-4">
+  <p class="das-socal-media"><a href="https://www.facebook.com/Judahs-Link-152821492208930/"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="https://twitter.com/JudahsLink""><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="https://www.instagram.com/judahslink/"><i class="fa fa-instagram" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/company/judah-s-link/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></p>
+</div>
+<div class="col-md-4">
+  <p class="das-privcy"><a href="#">TERMS OF USE</a> | <a href="#">PRIVACY POLICY</a></p>
+</div>
+</div>
+</footer> -->
+
+<!--Share Adds Modal -->
+<div class="modal fade share-adds-modal" id="share-adds-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+      	<h2 class="registrat">Share Ad with other Artist</h2>
+      	<div class="col-sm-12" style="margin-bottom: 30px; margin-top: 10px">
+      		<div class="col-sm-8 col-md-offset-2">
+      			<input class="search-input" name="" placeholder="Search ads" type="search">
+      		</div>
+      	</div>
+      	<div class="col-sm-12">
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img">
+      		  		<img class="img-responsive" src="images/profile-img.jpg">
+      		  		<div class="block-img"></div>
+      		  	</div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  <div class="col-sm-3 share-add-list">
+      		  	<div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+      		  	<p class="share-adds-profile">John Doe</p>
+      		  </div>
+      		  
+              <div class="col-sm-3 ">
+      		    <button class="mybtn" type="submit"><span>Sha</span>re</button>
+      		  </div>
+
+      	</div>
+      	
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!--Share Adds Modal -->
+<div class="modal fade link-artist-modal" id="link-artist-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Link Artist</h2>
+        <div class="col-sm-12" style="margin-bottom: 30px; margin-top: 10px">
+          <div class="col-sm-10 col-md-offset-1">
+            <input class="search-input" name="" placeholder="Search Artist" type="search">
+          </div>
+        </div>
+        <div class="col-sm-12 link-artist-link-height mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active active" type="submit"><span>Linked</span></button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+           
+            
+
+        </div>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!--Linkld artist Adds Modal -->
+<div class="modal fade change-password" id="change-password-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form name="changePasswordForm" novalidate>
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Change Password</h2>
+        <div class="col-sm-12 mar-top-10">
+          <div class="col-sm-5"><p class="profile-discri">Old Password</p></div>
+          <div class="col-sm-7"><input type="password" name="oldPassword" class="form-control my-input" ng-model="changePasswordInfo.oldPassword"  placeholder="Old Password" required>
+        <span style="color:red" ng-show="changePasswordForm.oldPassword.$dirty && changePasswordForm.oldPassword.$invalid">
+                    <span ng-show="changePasswordForm.oldPassword.$error.required">Old Password is required.</span>
+              </span>
+          </div>
+        </div>
+        <div class="col-sm-12 mar-top-10">
+          <div class="col-sm-5"><p class="profile-discri">New Password</p></div>
+          <div class="col-sm-7"><input type="password" name="newPassword" class="form-control my-input" ng-model="changePasswordInfo.newPassword" placeholder="New Password" required>
+          <span style="color:red" ng-show="changePasswordForm.newPassword.$dirty && changePasswordForm.newPassword.$invalid">
+                    <span ng-show="changePasswordForm.newPassword.$error.required">New Password is required.</span>
+              </span>
+          </div>
+        </div>
+     <!--    <div class="col-sm-12 mar-top-10">
+          <div class="col-sm-5"><p class="profile-discri">Confirm Password</p></div>
+          <div class="col-sm-7"><input type="password" name="confirmPassword" class="form-control my-input" ng-model="changePasswordInfo.confirmPassword"  placeholder=" Confirm Password" required>
+          <span style="color:red" ng-show="changePasswordForm.confirmPassword.$dirty && changePasswordForm.confirmPassword.$invalid">
+                  <span ng-show="changePasswordForm.confirmPassword.$error.required">Confirm Password is required.</span>
+              </span></div>
+        </div> -->
+        <div class="col-md-12 padd0 mar-top-10">
+              <div class="col-sm-5"> <button class="mybtn" type="submit" ng-click="changePassword()" ng-disabled="changePasswordForm.oldPassword.$dirty && changePasswordForm.oldPassword.$invalid || changePasswordForm.newPassword.$dirty && changePasswordForm.newPassword.$invalid ||  !changePasswordForm.oldPassword.$valid || !changePasswordForm.newPassword.$valid"><span>Upd</span>ate</button>
+              </div>
+              <span style="color:red" ng-show="isValidPassord">Incorrect Password</span>
+              <span style="color:red" ng-show="changePasswordForm.oldPassword.$dirty && changePasswordForm.oldPassword.$invalid || changePasswordForm.newPassword.$dirty && changePasswordForm.newPassword.$invalid || !changePasswordForm.oldPassword.$valid || !changePasswordForm.newPassword.$valid"> All Field is required</span>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!--Linkld artist Adds Modal -->
+<!-- <div class="modal fade log-out-modale" id="log-out-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 250px;">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Log Out</h2>
+        <div class="col-sm-12 write-post-sec">
+          <p class="profile-discri" style="text-align: center;">Are you sure wont to logout from the Judah's Link?</p>
+        </div>
+        
+        <div class="col-sm-12 write-post-sec">
+          <button class="mybtn" style="float: left; margin-left: 20%;" ng-click="logout()"  data-dismiss="modal"><span>Ye</span>s</button>
+          <button class="mybtn" style="float: right; margin-right: 20%;" data-dismiss="modal"><span>N</span>0</button>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div> -->
+<div ng-include="'templates/logout.html'"></div>
+
+<div class="modal fade subscribe-modale" id="subscribe-modale-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 380px;">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Upgrade Subscription</h2>
+       <div class="col-sm-12">
+         <div class="col-sm-5 subcribe-card active">
+           <p class="time-pireod">1Month</p>
+           <p class="time-pireod">Subscription</p>
+           <p class="renuw-new">Renew on 20.03.2018</p>
+           <p class="renuw-new-btn"><a href="#"><span>Ren</span>ew Now</a></p>
+           <div class="subcri-price-box">$50</div> 
+           
+         </div>
+         <div class="col-sm-5 subcribe-card">
+           <p class="time-pireod">1Month</p>
+           <p class="time-pireod">Subscription</p>
+           
+           <div class="subcri-price-box">$50</div> 
+         </div>
+         <div class="col-sm-5 subcribe-card">
+           <p class="time-pireod">1Month</p>
+           <p class="time-pireod">Subscription</p>
+           
+           <div class="subcri-price-box">$50</div> 
+         </div>
+         <div class="col-sm-5 subcribe-card">
+           <p class="time-pireod">1Month</p>
+           <p class="time-pireod">Subscription</p>
+           
+           <div class="subcri-price-box">$50</div> 
+         </div>
+
+
+
+       </div>
+        
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade sign-modal" id="signup-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+   <form name="signupForm" novalidate>
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <img  width="240" class="img-responsive img-cent" src="images/logo-2.png">
+        <h2 class="registrat">Edit Profile</h2>
+        <div class="col-sm-12 padd0">
+          <div class="col-sm-3 padd7">
+            <p class="sign-up-lable">Personal Info</p>
+            <div class="col-sm-12 padd0">
+              <a href=""><img id="OpenImgUpload6" width="90" class="img-responsive" ng-show="userInfo.profileImage" src="{{userInfo.profileImage}}"></a>
+              <ahref=""><img id="OpenImgUpload7" width="90" class="img-responsive" ng-show="!userInfo.profileImage" src="images/upload-img.png"></a>
+              <input type="file" id="imgupload6" onchange="angular.element(this).scope().profileImageUplaod(this,'imgupload6')" style="display:none"/> 
+            </div>
+            <p class="upload-lable">Upload Photo</p>
+            
+          </div>
+          <div class="col-sm-9 padd7">
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-4 padd7 marg-5"><input type="text"  name="firstName" class="form-control my-input" ng-model="userInfo.firstName" placeholder="Name" required>
+                 <span style="color:red" ng-show="signupForm.firstName.$dirty && signupForm.firstName.$invalid">
+                    <span ng-show="signupForm.firstName.$error.required">FirstName is required.</span>
+              </span>
+
+            </div>
+            <div class="col-sm-4 padd7 marg-5"><input type="text" name="city" class="form-control my-input" ng-model="userInfo.city" placeholder="City" required="">
+                 <span style="color:red" ng-show="signupForm.city.$dirty && signupForm.city.$invalid">
+                    <span ng-show="signupForm.city.$error.required">City is required.</span>
+              </span>
+            </div>
+            <div class="col-sm-4 padd7 marg-5"><input type="text"  name="state" class="form-control my-input" ng-model="userInfo.state" placeholder="State" required>
+                <span style="color:red" ng-show="signupForm.state.$dirty && signupForm.state.$invalid">
+                    <span ng-show="signupForm.state.$error.required">State is required.</span>
+              </span>
+            </div>
+            </div>
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-4 padd7 marg-5"><input type="text" name="denomination" class="form-control my-input" ng-model="userInfo.denomination" placeholder="Denomination" required>
+               <span style="color:red" ng-show="signupForm.denomination.$dirty && signupForm.denomination.$invalid">
+                    <span ng-show="signupForm.denomination.$error.required">Denomination is required.</span>
+              </span>
+            </div>
+            <div class="col-sm-4 padd7 marg-5"><input type="text" name="website" class="form-control my-input" ng-model="userInfo.website"  placeholder="Website" required>
+                <span style="color:red" ng-show="signupForm.website.$dirty && signupForm.website.$invalid">
+                    <span ng-show="signupForm.website.$error.required">Website is required.</span>
+              </span>
+            </div>
+            <div class="col-sm-4 padd7 marg-5">
+             <input type="text" class="form-control my-input" name="interest" ng-model="userInfo.interest" required placeholder="Style Preferences">
+              <!-- <select class="form-control my-input" name="interest" ng-model="userInfo.interest" required>
+                      <option>Position Interest1</option>
+                      <option>Position Interest2</option>
+                      <option>Position Interest3</option>
+                      <option>Position Interest4</option>
+                      <option>Position Interest5</option>
+                   </select> -->
+                    <span style="color:red" ng-show="signupForm.interest.$dirty && signupForm.interest.$invalid">
+                    <span ng-show="signupForm.interest.$error.required">Interest is required.</span>
+              </span>
+            </div>
+            </div>
+            <div class="col-sm-12 padd0" ng-show="userData.data.roleId=='1'">
+            <div class="col-sm-6 padd7 marg-5"><input type="text" name="degree" class="form-control my-input" ng-model="userInfo.degree"  placeholder="Degree/ Certifications" required>
+            <span style="color:red" ng-show="signupForm.degree.$dirty && signupForm.degree.$invalid">
+                    <span ng-show="signupForm.degree.$error.required">Degree is required.</span>
+              </span>
+            </div>
+            <div class="col-sm-6 padd7 marg-5"><input type="text" name="skill" class="form-control my-input" ng-model="userInfo.skill" placeholder="Skills" required>
+               <span style="color:red" ng-show="signupForm.skill.$dirty && signupForm.skill.$invalid">
+                    <span ng-show="signupForm.skill.$error.required">Skill is required.</span>
+              </span>
+            </div>
+            </div>
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-12 padd7 marg-5"><textarea class="form-control my-input" name="aboutUs" rows="3" ng-model="userInfo.aboutUs" placeholder="About" required></textarea>
+                 <span style="color:red" ng-show="signupForm.aboutUs.$dirty && signupForm.aboutUs.$invalid">
+                    <span ng-show="signupForm.aboutUs.$error.required">AboutUs is required.</span>
+              </span>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 padd0"  ng-show="userData.data.roleId=='1'">
+          <div class="col-sm-3 padd7">
+            <p class="sign-up-lable">Featured Video & Photoss</p>
+          </div>
+          <div class="col-sm-9 padd7">
+            <ul class="upload-video">
+               <li ng-repeat="mediaInfo in userInfo.media"><img width="150" height="80" src="{{mediaInfo.url}}"></li>
+              <li><img width="90" id="OpenImgUpload2" height="80" src="images/add-btn.png"> 
+              <input  type="file" id="imgupload2" onchange="angular.element(this).scope().changeFile(this,'file1')" style="display:none"/> </li>
+            </ul>
+            <div class="col-sm-12 padd7">
+               <div class="checkbox my-check">
+                    <label>
+                      <input class="check-input" type="checkbox"> Featured Profile Video
+                    </label>
+                   </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-12 padd0">
+          <!-- <div class="col-sm-3 padd7">
+            <p class="sign-up-lable">Credentials</p>
+          </div> -->
+          <div class="col-sm-9 padd7">
+            <!--  <div class="col-sm-12 padd0">
+            <div class="col-sm-4 padd7 marg-5"><input type="email" name="email" class="form-control my-input" ng-model="userInfo.email" placeholder="Email" required ng-disabled="true">
+                 <span style="color:red" ng-show="signupForm.email.$dirty && signupForm.email.$invalid">
+                  <span ng-show="signupForm.email.$error.required">Email is required.</span>
+                   <span ng-show="signupForm.email.$error.email">Invalid email address.</span>
+              </span>
+            </div>
+
+            <div class="col-sm-4 padd7 marg-5"><input type="password" ng-disabled="true" name="password" class="form-control my-input" ng-model="userInfo.password" placeholder="Password" required>
+            <span style="color:red" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">
+                    <span ng-show="signupForm.password.$error.required">Password is required.</span>
+              </span>
+            </div>
+            <div class="col-sm-4 padd7 marg-5"><input type="password" ng-disabled="true" class="form-control my-input"  placeholder="Confirm Password"></div>
+            </div> -->
+            <div class="col-md-12 padd0" >
+               <button class="mybtn" type="submit" ng-click="editProfile()" ng-disabled="(signupForm.city.$dirty && signupForm.city.$invalid) || (signupForm.state.$dirty && signupForm.state.$invalid) || (signupForm.skill.$dirty && signupForm.skill.$invalid) || (signupForm.aboutUs.$dirty && signupForm.aboutus.$invalid) || (signupForm.firstName.$dirty && signupForm.firstName.$invalid) || (signupForm.denomination.$dirty && signupForm.denomination.$invalid)|| (signupForm.interest.$dirty && signupForm.interest.$invalid)"><span>Submit</span></button>
+              </div>
+
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    </form>
+  </div>
+</div>
+<!-- <div class="modal fade sign-modal" id="signup-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <img  width="240" class="img-responsive img-cent" src="images/logo-2.png">
+        <h2 class="registrat">Update Profile</h2>
+        <div class="col-sm-12 padd0">
+          <div class="col-sm-3 padd7">
+            <p class="sign-up-lable">Personal Info</p>
+            <div class="col-sm-12 padd0">
+              <img id="OpenImgUpload" width="90" class="img-responsive" src="images/upload-img.png">
+              <input type="file" id="imgupload" style="display:none"/> 
+            </div>
+            <p class="upload-lable">Upload Photo</p>
+            
+          </div>
+          <div class="col-sm-9 padd7">
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-4 padd7 marg-5"><input type="text" class="form-control my-input" ng placeholder="Name"></div>
+            <div class="col-sm-4 padd7 marg-5"><input type="text" class="form-control my-input"  placeholder="City"></div>
+            <div class="col-sm-4 padd7 marg-5"><input type="text" class="form-control my-input"  placeholder="State"></div>
+            </div>
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-4 padd7 marg-5"><input type="text" class="form-control my-input"  placeholder="Denomination"></div>
+            <div class="col-sm-4 padd7 marg-5"><input type="text" class="form-control my-input"  placeholder="Website"></div>
+            <div class="col-sm-4 padd7 marg-5">
+              <select class="form-control my-input">
+                      <option>Position Interest1</option>
+                      <option>Position Interest2</option>
+                      <option>Position Interest3</option>
+                      <option>Position Interest4</option>
+                      <option>Position Interest5</option>
+                   </select>
+            </div>
+            </div>
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-6 padd7 marg-5"><input type="text" class="form-control my-input"  placeholder="Degree/ Certifications"></div>
+            <div class="col-sm-6 padd7 marg-5"><input type="text" class="form-control my-input"  placeholder="Skills"></div>
+            </div>
+            <div class="col-sm-12 padd0">
+            <div class="col-sm-12 padd7 marg-5"><textarea class="form-control my-input" rows="3" placeholder="About"></textarea></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 padd0">
+          <div class="col-sm-3 padd7">
+            <p class="sign-up-lable">Featured Video & Photoss</p>
+          </div>
+          <div class="col-sm-9 padd7">
+            <ul class="upload-video">
+              <li><img width="150" height="80" src="images/video1.jpg"></li>
+              <li><img width="90" height="80" src="images/video2.jpg"></li>
+              <li><img width="90" height="80" src="images/video2.jpg"></li>
+              <li><img width="90" id="OpenImgUpload2" height="80" src="images/add-btn.png"> <input type="file" id="imgupload2" style="display:none"/> </li>
+            </ul>
+            <div class="col-sm-12 padd7">
+               <div class="checkbox my-check">
+                    <label>
+                      <input class="check-input" type="checkbox"> Featured Profile Video
+                    </label>
+                   </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-12 padd0">
+            <div class="col-md-9 col-md-offset-3 padd0">
+               <button class="mybtn" type="submit"><span>Up</span>date</button>
+              </div>
+
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div> -->
+</div>

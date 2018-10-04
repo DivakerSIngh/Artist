@@ -1,0 +1,60 @@
+<div class="profile-menu"  ng-init="toggle=1">
+    <ul class="profile-menu-list">
+      <li ng-class="{'active':toggle==2}" ng-click="toggle=2" ng-show="userInfo.data.roleId=='1'">
+        <a ui-sref="near_by_ads">
+          <img class="img-simp" width="35" src="images/profile-1.png" />
+          <img class="img-active" width="35" src="images/profile-1-active.png" />
+        </a>
+        <span>Ads Near By</span>
+      </li>
+      <li ng-class="{'active':toggle==1 }" ng-click="toggle=1">
+        <a ui-sref="my_add" ng-show="userInfo.data.roleId=='1'">
+        <img class="img-simp" width="35" src="images/profile-2.png" />
+          <img class="img-active" width="35" src="images/profile-2-active.png" />
+          </a>
+        <a ui-sref="place_myAdd" ng-show="userInfo.data.roleId=='2'">
+          <img class="img-simp" width="35" src="images/profile-2.png" />
+          <img class="img-active" width="35" src="images/profile-2-active.png" />
+        </a>
+        <span>My ADs</span>
+      </li>
+      <li ng-class="{'active':toggle==3}" ng-click="toggle=3" ng-show="userInfo.data.roleId=='1'">
+        <a href="" >
+          <img class="img-simp" width="35" src="images/profile-5.png" />
+          <img class="img-active" width="35" src="images/profile-5-active.png" />
+        </a>
+        <span>Community</span>
+      </li>
+       <li ng-class="{'active':toggle==5}" ng-click="toggle=5" ng-show="userInfo.data.roleId=='2'">
+        <a ui-sref="my_add">
+          <img class="img-simp" width="35" src="images/profile-2.png" />
+          <img class="img-active" width="35" src="images/profile-2-active.png" />
+        </a>
+        <span>Post New Ad</span>
+      </li>
+      <li ng-class="{'active':toggle==4}" ng-click="toggle=4">
+        <a ui-sref="sell_and_shop">
+          <img class="img-simp" width="35" src="images/profile-3.png" />
+          <img class="img-active" width="35" src="images/profile-3-active.png" />
+        </a>
+        <span>Sell & Shop</span>
+      </li>
+      <li ng-class="{'active':toggle==6}" ng-click="toggle=6">
+        <a ui-sref="artists">
+          <img class="img-simp" width="35" src="images/profile-4.png" />
+          <img class="img-active" width="35" src="images/profile-4-active.png" />
+        </a>
+        <span>Artists</span>
+      </li>
+      
+       <li ng-class="{'active':toggle==7}" ng-click="toggle=7" ng-show="userInfo.data.roleId=='2'">
+        <a ui-sref="saved-ads">
+          <img class="img-simp" width="35" src="images/profile-4.png" />
+          <img class="img-active" width="35" src="images/profile-4-active.png" />
+        </a>
+        <span>Saved Items</span>
+      </li>
+      
+      
+    </ul>
+   </div>

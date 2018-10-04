@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngJodha">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Index</title>
+<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-slider.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+ <link href="css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body ng-init="isHeader=false">
+<div ng-include="'templates/header.html'" ng-if="isHeader"></div>
+<div ng-include="'templates/siderbar.html'" ng-if="isHeader"></div>
+<div ui-view=""></div>
+<script src="js/jquery.min.js"></script>
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-ui-router.min.js"></script>
+
+<script src="lib/angular-datepicker.js"></script>
+<script src="js/bootstrap.min.js" ></script>
+<script src="js/bootstrap-slider.js" ></script>
+<script type="text/javascript" src="lib/ngStorage/ngStorage.min.js"></script> 
+<script src="js/jquery.mCustomScrollbar.js"></script>
+<script src="js/app.js"></script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDaxE9p2gYHKVnEJ6AbN03m0dSPRMCccc&libraries=places""></script>
+
+<script src="js/application.js"></script>
+<script src="js/directives/myDirective.js"></script>
+
+<script src="js/controllers/AppController.js"></script>
+<script src="js/controllers/headerCtrl.js"></script>
+<script src="js/controllers/myAddCtrl.js"></script>
+
+<script src="js/services/myServices.js"></script>
+
+</body>
+</html>

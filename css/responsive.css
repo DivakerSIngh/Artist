@@ -1,0 +1,210 @@
+@media (min-width: 768px)and (max-width: 980px)  {
+.home-header{
+	background:#000;
+	padding:8px 0px;
+}	 
+.navbar-cent{
+	width:100%;
+	margin-top:10px;
+	text-align:center;
+}
+.navbar-cent li{
+	display:inline-block;
+}
+.main-nav{
+	margin-top:7px;
+	margin-bottom:6px;
+} 
+.carousel-caption h3{
+    font-size: 60px;
+	line-height: 60px;
+	margin-bottom:5px;
+}
+.carousel-caption p.sub-titel, .carousel-caption h3.slide-3 {
+    font-size: 40px;
+	line-height: 40px;
+	margin-bottom:5px;
+}
+.carousel-caption p.discription {
+    font-size: 20px;
+	line-height: 14px;
+	margin-bottom:5px;
+}
+.carousel-caption p.border {
+	margin-bottom:5px;
+	height:7px;
+	border-bottom: 3px solid #fff;
+}
+.carousel-caption p.sub-titel.slide-3{
+	font-size: 20px;
+	line-height: 22px;
+	margin-bottom:5px;
+}
+.padd-top-50{
+	padding-top:0px;
+}
+.text-list {
+    padding: 22px 30px;
+}
+.home-list li {
+    margin-bottom: 8px;
+}
+.nav > li > a{
+	padding:10px 8px;
+}
+
+ }
+ 
+
+ 
+@media (max-width: 768px) { 
+.logo-sec .container-fluid{
+	padding:0px;
+}
+.logo-sec .col-md-5, .logo-sec .col-md-3, .logo-sec .col-md-4{
+	padding:5px;
+}
+.home-header{
+	position:relative;
+	background:#000;
+	padding:0px;
+}
+.navbar-cent{
+	width:100%;
+	margin-top:10px;
+	text-align:center;
+}
+.navbar-cent li{
+	display:inline-block;
+}
+.logo{
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}
+.main-nav{
+	margin-top:7px;
+	margin-bottom:6px;
+}
+.navbar-default .navbar-collapse{
+	border-top:1px solid #000;
+}
+.main-nav .navbar-nav > li > a{
+	text-align:center;
+}
+.navbar-toggle{
+	float:inherit;
+}
+.navbar-default .navbar-toggle {
+    border-color: #ddd;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+.carousel-caption {
+    text-align: center;
+    left: 8%;
+    top: 0px;
+}
+.carousel-caption h3{
+    font-size: 25px;
+	line-height: 23px;
+	margin-bottom:5px;
+}
+.carousel-caption p.sub-titel, .carousel-caption h3.slide-3 {
+    font-size: 18px;
+	line-height: 17px;
+	margin-bottom:5px;
+}
+.carousel-caption p.discription {
+    font-size: 15px;
+	line-height: 14px;
+	margin-bottom:5px;
+}
+.carousel-caption p.border {
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+	margin-bottom:5px;
+	height:7px;
+	border-bottom: 3px solid #fff;
+}
+.carousel-caption p.sub-titel.slide-3{
+	font-size: 11px;
+	line-height: 11px;
+	margin-bottom:5px;
+}
+.carousel-indicators{
+	bottom: -5px;
+    left: 50%;
+}
+.carousel-indicators li, .carousel-indicators li.active{
+	width:50px;
+}
+.learn-more{
+	display:none;
+}
+.section1 {
+    padding-top: 20px;
+}
+.section1 div{
+	padding-left:4px;
+	padding-right:4px;
+}
+.home-list{
+	padding-left:30px;
+}
+.text-list{
+	padding: 8px 10px;
+	min-height: 167px;
+}
+.section1 .padd-60 img{
+	min-height: 160px;
+}
+.home-list li {
+    margin-bottom: 7px;
+	font-size: 14px;
+}
+.section2{
+	padding-top: 20px;
+    padding-bottom: 20px;
+}
+.section2 .col-md-10, .section2 .padd-50{
+	padding-left:3px;
+	padding-right:3px;
+}
+.sec-titel{
+	text-align:center;
+	margin-top: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+.padd-top-50 {
+    padding-top: 0px;
+}
+.respo-img{
+	min-height:150px;
+}
+.respo-name{
+	font-size: 21px;
+	margin-bottom:5px;
+}
+.respo-hide{
+	font-size: 13px;
+	margin-bottom:5px;
+	line-height:13px;
+}
+.copy-right, .copy-terms{
+	text-align:center;
+}
+.page-titel {
+    font-size: 30px;
+    top: 48%;
+}
+
+ }
+ 
+@media (max-width: 360px) { 
+
+ }

@@ -1,0 +1,330 @@
+ <div id="loading">
+  <img id="loading-image" src="images/example.gif" alt="Loading..." />
+</div>
+ <section class="dashboard-section">
+  <div class="container-fluid dashboard-content">
+ <div class="col-ms-12">
+ <div ng-include="'templates/sub-header.html'"></div>
+   	<!-- <div class="col-sm-12">
+   		<div class="col-sm-2 profile-box">
+   			<div class="profile-img"><img class="img-responsive" src="images/profile-img.jpg" /></div>
+   		</div>
+   		<div class="col-sm-10 padd-left-0">
+   			<h3 class="profile-welcome">Welcome<span>,</span></h3>
+   			<ul class="profile-details">
+               <li class="profile-das-name"><a href="#">John Doe</a></li>
+               <li class="profile-das-mass"><span>2</span><a href="#">Messages</a></li>
+               <li class="profile-das-noti"><a href="#">Notifications</a></li>
+   			</ul>
+   			<ul class="profile-sub-head">
+   				<li class="profile-sub-img"><a class="" href="#">Profile</a></li>
+   				<li class="profile-sub-pas"><a class="" href="#">Change Password</a></li>
+   			</ul>
+   		</div>
+   	</div> -->
+
+    <div class="col-sm-12" ng-init="getArtist()">
+   		<div class="col-sm-2 profile-box">
+   			<h2 class="adds-near">Artists</h2>
+   		</div>
+   		<div class="col-sm-9 padd-left-0">
+   			<div class="col-sm-11 padd-0 filter">
+   				<div class="col-sm-6 padd-0">
+   					<input class="search-input" type="search" name="" placeholder="Search Artists" ng-model="title">
+   				</div>
+   				<div class="col-sm-3">
+   					<p class="artist-head-titel"><span>All Artists</span></p>
+   				</div>
+   				<!-- <div class="col-sm-3">
+   					<p class="artist-head-titel"><span>Followed Artist</span></p>
+   				</div> -->
+   			</div>
+   			<div class="col-sm-12 padd-0" data-mcs-theme="minimal-dark">
+   			
+   		   <div class="col-sm-6 padd-7" ng-repeat="artists in artistData | filter:title">
+         <div class="col-sm-12 padd-0 artst-card">
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive"  ng-show="artists.profileImage"  src="{{artists.profileImage}}">
+               <img class="img-responsive" ng-show="!artists.profileImage" src="images/logo-2.png" /></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">{{artists.firstName}} {{artists.lastName}}</p>
+               <p class="artist-card-addr">{{artists.city}}, {{artists.state}}</p>
+               <p class="artist-card-addr">Website -{{artists.website}}</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view" ng-click="viewArtists(artists)"><a href="" data-toggle="modal" data-target="#arist-card-model-id"><span>View P</span>rofile</a></p>
+              <!-- <p class="card-profile-view"><a href=""><span>Foll</span>ow</a></p> -->
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>{{artists.aboutUs}}</p>
+          </div>
+          </div>
+         </div>
+     <!--     <div class="col-sm-5 padd-7 artst-card">
+
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive" src="images/profile-img.jpg"></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">Jane Deo</p>
+               <p class="artist-card-addr">Atlantic City, New Jerset - USA</p>
+               <p class="artist-card-addr">Website - www.wwwwww.com</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view"><a href="#"><span>View P</span>rofile</a></p>
+              <p class="card-profile-view"><a href="#"><span>Foll</span>ow</a></p>
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+          </div>
+
+         </div> -->
+         <!-- <div class="col-sm-5 padd-7 artst-card">
+
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive" src="images/profile-img.jpg"></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">Jane Deo</p>
+               <p class="artist-card-addr">Atlantic City, New Jerset - USA</p>
+               <p class="artist-card-addr">Website - www.wwwwww.com</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view"><a href="#"><span>View P</span>rofile</a></p>
+              <p class="card-profile-view"><a href="#"><span>Foll</span>ow</a></p>
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+          </div>
+
+         </div> -->
+     <!--     <div class="col-sm-5 padd-7 artst-card">
+
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive" src="images/profile-img.jpg"></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">Jane Deo</p>
+               <p class="artist-card-addr">Atlantic City, New Jerset - USA</p>
+               <p class="artist-card-addr">Website - www.wwwwww.com</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view"><a href="#"><span>View P</span>rofile</a></p>
+              <p class="card-profile-view"><a href="#"><span>Foll</span>ow</a></p>
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+          </div>
+
+         </div> -->
+         <!-- <div class="col-sm-5 padd-7 artst-card">
+
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive" src="images/profile-img.jpg"></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">Jane Deo</p>
+               <p class="artist-card-addr">Atlantic City, New Jerset - USA</p>
+               <p class="artist-card-addr">Website - www.wwwwww.com</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view"><a href="#"><span>View P</span>rofile</a></p>
+              <p class="card-profile-view"><a href="#"><span>Foll</span>ow</a></p>
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+          </div>
+
+         </div> -->
+         <!-- <div class="col-sm-5 padd-7 artst-card">
+
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive" src="images/profile-img.jpg"></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">Jane Deo</p>
+               <p class="artist-card-addr">Atlantic City, New Jerset - USA</p>
+               <p class="artist-card-addr">Website - www.wwwwww.com</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view"><a href="#"><span>View P</span>rofile</a></p>
+              <p class="card-profile-view"><a href="#"><span>Foll</span>ow</a></p>
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+          </div>
+
+         </div> -->
+        <!--  <div class="col-sm-5 padd-7 artst-card">
+
+          <div class="col-sm-12 padd-0">
+            <div class="col-sm-8 padd-7">
+             <div class="col-sm-4 padd-0">
+              <div class="artist-pro-img"><img class="img-responsive" src="images/profile-img.jpg"></div>
+             </div>
+             <div class="col-sm-8 padd-0">
+               <p class="artist-card-name">Jane Deo</p>
+               <p class="artist-card-addr">Atlantic City, New Jerset - USA</p>
+               <p class="artist-card-addr">Website - www.wwwwww.com</p>
+             </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="card-profile-view"><a href="#"><span>View P</span>rofile</a></p>
+              <p class="card-profile-view"><a href="#"><span>Foll</span>ow</a></p>
+            </div>
+          </div>
+          <div class="col-sm-12 padd-7">
+            <p class="card-profile-about">About</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+          </div>
+
+         </div>
+
+ -->
+   		   
+   		   
+
+
+   		  </div>
+
+   		</div>
+   	</div>
+
+   </div>
+
+
+
+ </div>
+	
+</section>
+
+<div ng-include="'templates/footer.html'"></div>
+<!-- 
+<footer class="dashboard-footer">
+<div class="container">
+<div class="col-md-4">
+  <p class="das-copyright">2017 © Judah’s Link</p>
+</div>
+<div class="col-md-4">
+  <p class="das-socal-media"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></p>
+</div>
+<div class="col-md-4">
+  <p class="das-privcy"><a href="#">TERMS OF USE</a> | <a href="#">PRIVACY POLICY</a></p>
+</div>
+</div>
+</footer> -->
+
+<!--Share Adds Modal -->
+<div class="modal fade arist-card-model" id="arist-card-model-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="profile-img card-profile-dimg"><img class="img-responsive" ng-show="viewArtistsData.profileImage" src="{{viewArtistsData.profileImage}}" />
+        <img class="img-responsive" ng-show="!viewArtistsData.profileImage" src="images/logo-2.png" /></div>
+      	<button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+      	<h2 class="registrat">{{viewArtistsData.firstName}} {{viewArtistsData.lastName}}</h2>
+      	<div class="col-sm-12 border-top">
+         <div class="col-sm-4 padd-0">
+           <p class="artist-card-name">Location</p>
+           <!-- <p class="artist-card-addr">Atlanta CIty, New Jerset- USA</p> -->
+           <p class="artist-card-addr">{{viewArtistsData.city}} {{viewArtistsData.state}}</p>
+         </div>
+         <div class="col-sm-4 padd-0">
+           <p class="artist-card-name">Denomination</p>
+           <p class="artist-card-addr">{{viewArtistsData.denomination}}</p>
+         </div>
+         <div class="col-sm-4 padd-0">
+           <p class="artist-card-name">Website</p>
+           <p class="artist-card-addr">{{viewArtistsData.website}}</p>
+         </div>
+        </div>
+        <div class="col-sm-12 border-bot">
+         <div class="col-sm-4 padd-0">
+           <p class="artist-card-name">Postion Interest</p>
+           <p class="artist-card-addr">{{viewArtistsData.interest}}</p>
+         </div>
+         <div class="col-sm-4 padd-0">
+           <p class="artist-card-name">Degree/Certifications</p>
+           <p class="artist-card-addr">{{viewArtistsData.degree}}</p>
+         </div>
+         <div class="col-sm-4 padd-0">
+           <p class="artist-card-name">Skills</p>
+           <p class="artist-card-addr">{{viewArtistsData.skill}}</p>
+         </div>
+
+        </div>
+        <div class="col-sm-12 padd-0">
+         <!-- <div class="col-sm-3 padd-0">
+           <p class="artist-card-name">Featured Video</p><br>
+           <img width="130" class="img-responsive" src="images/video-4.jpg" />
+         </div> -->
+         <div class="col-sm-9 padd-0">
+           <p class="artist-card-name">Other Media</p><br>
+           <ul class="card-top-rest">
+             <li ng-repeat="imageurl in viewArtistsData.media"><img class="img-responsive" src="{{imageurl.url}}" /></li>
+            <!--  <li><img class="img-responsive" src="images/video-2.jpg" /></li>
+             <li><img class="img-responsive" src="images/video-3.jpg" /></li> -->
+           </ul>
+         </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!--Linkld artist Adds Modal -->
+ <!-- <div class="modal fade log-out-modale" id="log-out-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 250px;">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Log Out</h2>
+        <div class="col-sm-12 write-post-sec">
+          <p class="profile-discri" style="text-align: center;">Are you sure wont to logout from the Judah's Link?</p>
+        </div>
+        
+        <div class="col-sm-12 write-post-sec">
+          <button class="mybtn" style="float: left; margin-left: 20%;"><span>Ye</span>s</button>
+          <button class="mybtn" style="float: right; margin-right: 20%;"><span>N</span>0</button>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div> -->
+<div ng-include="'templates/logout.html'"></div>

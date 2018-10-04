@@ -1,0 +1,526 @@
+<div id="loading">
+  <img id="loading-image" src="images/example.gif" alt="Loading..." />
+</div>
+<section class="dashboard-section">
+  <div class="container-fluid dashboard-content">
+  
+
+   <div class="col-ms-12">
+   <div ng-include="'templates/sub-header.html'"></div>
+   
+    </div>
+
+    <div class="col-sm-12">
+      <div class="col-sm-2 profile-box">
+        <h2 class="adds-near community-post">Sell & Shop</h2>
+        
+      </div>
+      <div class="col-sm-10 padd-left-0">
+            <!-- Tab panes -->
+            <div class="col-sm-12 padd-0 filter">
+          <div class="col-sm-2 padd-0">
+            <input class="search-input" type="search" name="" placeholder="Search Item" ng-model="title">
+          </div>
+          <div class="col-sm-10">
+            <ul class="shop-sell">
+              <li><a href="" ng-click="getSaveItem()">Saved Items</a></li>
+              <li><a href="" ng-click="getAllItem();item_name='';priceRange=1;">All Item</a></li>
+               <li><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Set Price Range</a>
+                 <ul class="rang-slider dropdown-menu">
+                   <li>
+                      <div class="rangeslider">
+                       <input id="ex12b" type="text" ng-model="price"/>
+                      </div>
+                   </li>
+                 </ul>
+              </li> 
+              <style type="text/css">
+                .my-menu li{
+                  width: 100%;
+                }
+              </style>
+              <li class="dropdown"><a href="" data-toggle="dropdown" >Sort by category</a>
+               <ul class="dropdown-menu my-menu" aria-labelledby="dLabel">
+                <li><a href="" ng-click="item_name='Gittar'">Gittar</a></li>
+                <li><a href="" ng-click="item_name='Mobile'">Mobile</a></li>
+                <li><a href="" ng-click="item_name='Iphone'">Iphone</a></li>
+                <li><a href="" ng-click="item_name=''">All</a></li>
+              </ul>
+              </li>
+              <li><a href="" data-toggle="modal" data-target="#add-item-for-sell">Add Item Sell</a></li>
+            </ul>
+          </div>
+        </div>
+
+        
+
+         <div class="col-sm-10 padd-left-0" ng-init="getAllItem()" ng-show="!isSaved">   
+                <div class="col-sm-12 padd-0 scroll-right">
+              <div class="col-sm-12 near-adds-list padd-0 active" ng-repeat="sell in sellItemData | filter:{ category:item_name ,name:title}" ng-show="sell.price>=priceRange">
+            <div class="col-sm-3 padd-7"><img class="img-responsive" ng-show="sell.image" src="{{sell.image}}" />
+             <img class="img-responsive" ng-show="!sell.image" src="images/logo-2.png" /></div>
+            <div class="col-sm-9 height-130 padd-7">
+              <div class="col-sm-12 padd-0">
+                <div class="col-sm-6 padd-7">
+                  <p class="add-titel">{{sell.category}}</p>
+                </div>
+                <div class="col-sm-6 padd-7" ng-show="sell.isFree=='0'">
+                   <p class="add-titel right-text2">Free</p>
+                </div>
+                <div class="col-sm-6 padd-7" ng-show="sell.isFree=='1'">
+                   <p class="add-titel right-text2">For Sell</p>
+                </div>
+              </div>
+              <div class="col-sm-12 padd-7">
+                <p class="add-type" ng-show="sell.isFree=='1'">Price - ${{sell.price}}</p>
+                <p class="add-type" >Location- {{sell.locationName}}</p>
+                <p class="add-type">Title - {{sell.name}}</p>
+                <p class="add-discri">{{sell.description}}</p>
+              </div>
+              <div class="col-sm-13 padd-0">
+                
+                <div class="col-sm-12 padd-7">
+                    <p class="add-posted-link comment-write right-text2" >
+                    <a href="" class="chat-box-show" ng-click="communication(sell,sell.userId._id)" ng-show="sell.userId._id!=userData.data._id"><span >Go to Commun</span>ication</a>
+                    <a  class="chat-box-show"  ng-show="sell.userId._id==userData.data._id"><span >Go to Commun</span>ication</a> &nbsp; &nbsp; &nbsp;  
+                    <a  ng-show="sell.isSaved"><span>Sa</span>ved</a>
+                    <a href="" ng-click="save_add_Item(sell._id,$index)" ng-show="!sell.isSaved"><span>Sa</span>ve</a></p>
+                </div>
+              </div>
+
+            </div>
+         </div>
+      </div>
+    </div>
+
+     <div class="col-sm-10 padd-left-0" ng-show="isSaved">   
+                <div class="col-sm-12 padd-0 scroll-right" data-mcs-theme="minimal-dark">
+              <div class="col-sm-12 near-adds-list padd-0 active" ng-repeat="sell in saveItem | filter:title">
+            <div class="col-sm-3 padd-7"><img class="img-responsive" ng-show="sell.itemId.image" src="{{sell.itemId.image}}" />
+                <img class="img-responsive" ng-show="!sell.itemId.image" src="images/logo-2.png" />
+            </div>
+            <div class="col-sm-9 height-130 padd-7">
+              <div class="col-sm-12 padd-0">
+                <div class="col-sm-6 padd-7">
+                  <p class="add-titel">{{sell.itemId.category}}</p>
+                </div>
+                <div class="col-sm-6 padd-7" ng-show="sell.itemId.isFree=='0'">
+                   <p class="add-titel right-text2">Free</p>
+                </div>
+                <div class="col-sm-6 padd-7" ng-show="sell.itemId.isFree=='1'">
+                   <p class="add-titel right-text2">For Sell</p>
+                </div>
+              </div>
+              <div class="col-sm-12 padd-7">
+                <p class="add-type" ng-show="sell.itemId.isFree=='1'">Price - ${{sell.itemId.price}}</p>
+                <p class="add-type" >Location - {{sell.itemId.locationName}}</p>
+                <p class="add-type" >title - {{sell.itemId.name}}</p>
+                <p class="add-discri">{{sell.itemId.description}}</p>
+              </div>
+             
+               
+                <div class="col-sm-13 padd-7">
+                    <p class="add-posted-link comment-write right-text2"><a href="" class="chat-box-show" ><span ng-click="communication(sell,sell.itemId.userId)">Go to Commun</span>ication</a> &nbsp; &nbsp; &nbsp;  <a href="" ng-click="removeItem($index,sell)"><span>Remove</span>Item</a></p>
+                </div>
+             
+
+            </div>
+         </div>
+      <div ng-show="saveItem.length<=0">
+            <h2>You don't have  any save ad yet.</h2>
+            </div>
+
+      </div>
+      
+
+        </div>
+   </div>
+  </div>
+</div>
+</div>
+  
+</section>
+
+
+<div ng-include="'templates/footer.html'"></div>
+
+<!--Share Adds Modal -->
+<div class="modal fade share-adds-modal" id="share-adds-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Share Ad with other Artist</h2>
+        <div class="col-sm-12" style="margin-bottom: 30px; margin-top: 10px">
+          <div class="col-sm-8 col-md-offset-2">
+            <input class="search-input" name="" placeholder="Search ads" type="search">
+          </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+                <div class="block-img"></div>
+              </div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            <div class="col-sm-3 share-add-list">
+              <div class="share-add-img"><img class="img-responsive" src="images/profile-img.jpg"><div class="block-img"></div></div>
+              <p class="share-adds-profile">John Doe</p>
+            </div>
+            
+              <div class="col-sm-3 ">
+              <button class="mybtn" type="submit"><span>Sha</span>re</button>
+            </div>
+
+        </div>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!--Share Adds Modal -->
+<div class="modal fade link-artist-modal" id="link-artist-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Link Artist</h2>
+        <div class="col-sm-12" style="margin-bottom: 30px; margin-top: 10px">
+          <div class="col-sm-10 col-md-offset-1">
+            <input class="search-input" name="" placeholder="Search Artist" type="search">
+          </div>
+        </div>
+        <div class="col-sm-12 link-artist-link-height" data-mcs-theme="minimal-dark">
+
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active active" type="submit"><span>Linked</span></button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Link th</span>is artist</button>
+            </div>
+          </div>
+           
+            
+
+        </div>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!--Linkld artist Adds Modal -->
+<div class="modal fade link-artist-modal" id="link-artist-modal-id-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat-2"><span class="left-text">Link Artist</span> <span class="right-text"> Completed and Closed Ad</span></h2>
+        <div class="col-sm-12 link-artist-link-height mCustomScrollbar" data-mcs-theme="minimal-dark" style="height: 65vh;">
+
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active active" type="submit"><span>Fill</span>ed</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Fi</span>ll</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Fi</span>ll</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span><span>Fi</span>ll</button>
+            </div>
+          </div>
+          <div class="col-sm-12 padd0 link-artist-link-list">
+            <div class="col-sm-3 padd0">
+              <div class="share-add-img">
+                <img class="img-responsive" src="images/profile-img.jpg">
+              </div>
+            </div>
+            <div class="col-sm-4 padd0">
+              <p class="link-artist-name">John Doe</p>
+            </div>
+            <div class="col-sm-5 padd0">
+               <button class="mybtn link-artist-link-active" type="submit"><span>Fi</span>ll</button>
+            </div>
+          </div>
+           
+            
+
+        </div>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!--Linkld artist Adds Modal -->
+<div class="modal fade bs-example-modal-lg write-post-modal" id="write-post-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 380px;">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Write a Post</h2>
+        <div class="col-sm-12 write-post-sec">
+          <textarea class="form-control my-input" rows="5"></textarea>
+        </div>
+        <div class="col-sm-12 write-post-sec">
+          <div class="col-sm-5 padd0">
+            <div class="input-group write-post-tag">
+              <span class="input-group-addon" id="basic-addon3">Tag Artist</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="@artistname">
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-5">
+            <p class="write-post-upload"><a href="" id="write-post-upload-img"><i class="fa fa-picture-o" aria-hidden="true"></i> Upload Video/Image</a></p>
+            <input id="post-upload-img" type="file" style="display: none;">
+          </div>
+        </div>
+        <div class="col-sm-12 write-post-sec">
+          <button class="mybtn" style="float: right;"><span>Po</span>st</button>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="chat-box" ng-show="isToggle">
+  <button class="chat-close" ng-click="isToggle=false"><i class="fa fa-times" aria-hidden="true"></i></button>
+  <div class="chat-header"><h2 class="titel">{{userData.data.firstName}}</h2></div>
+  <div class="chat-body">
+  <div   style="width: 100%" class="heightClass" scroll="chats">
+    <p class="chat-mass-left" ng-repeat="chat in chats | orderBy:'-'" scroll-bottom="chat" ng-if='chat.senderId!=userData.data._id'><span ng-if='chat.senderId!=userData.data._id' class="border-color">{{chat.message}}</span></p>
+    <p class="chat-mass-right" ng-repeat="chat in chats | orderBy:'-'" ng-if='chat.senderId==userData.data._id'><span ng-if='chat.senderId==userData.data._id' class="border-color">{{chat.message}}</span></p>
+    </div>
+  </div>
+  <div class="chat-foot">
+    <textarea type="textarea" id="myInput" class="chat-inn" name="" placeholder="Type here" ng-model="chat.message"></textarea>
+    <button id="myBtn"  class="chat-send" ng-click="sendMessage(userData.data._id)"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+  </div>
+
+</div>
+ <div ng-include="'templates/logout.html'"></div>
+<!-- Modal -->
+<div class="modal fade sign-modal" id="add-item-for-sell" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+  <form name="addItem" novalidate>
+    <div class="modal-content" style="min-height: 498px;">
+      <div class="modal-body">
+        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+        <h2 class="registrat">Add Item for Sell</h2>
+        
+        <br>
+                <div class="col-md-4 col-sm-4 padd-5">
+                  <p class="input-lable">Item For</p>
+                  <div class="col-xs-12 radio-btn padd0">
+                     <label class="radio-inline">
+                       <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" ng-model="add_Item.isFree" required> Sell
+                     </label>
+                     <label class="radio-inline">
+                       <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0" ng-model="add_Item.isFree" required> Free
+                     </label>
+                  </div>
+
+                </div>
+                 <div class="col-md-4 col-sm-4 padd-5">
+                  <p class="input-lable">Item Name</p>
+                  <input type="text" class="form-control my-input max-width-input"  placeholder="Item Name" ng-model="add_Item.name">
+                </div>
+                <div class="col-md-4 col-sm-4 padd-5">
+                  <p class="input-lable">Item Price</p>
+                  <input type="text" class="form-control my-input max-width-input" ng-model="add_Item.price"  placeholder="Item Price" required>
+                </div>
+                 <div class="col-md-6 col-sm-6 padd-5" ng-init="add_Item.category='Please select the category'">
+                  <p class="input-lable">Item Catagory</p>
+                  
+                  <select class="form-control my-input max-width-input" ng-model="add_Item.category">
+                    <option >Please select the category</option>
+                    <option >Music</option>
+                    <option>Gittar</option>
+                    <option >Iphone</option>
+                    <option>Others</option>
+                  </select>
+                </div>
+                <div class="col-md-6 col-sm-6 padd-5"  >
+                 <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"  ng-show="isMapOpen">
+                 <div id="map" style="width:100%;height:200px;" ng-show="isMapOpen"></div> -->
+                  <p class="input-lable">Location</p>
+                 
+                  <input type="text" id="serachResult" class="form-control my-input max-width-input" ng-model="myAdd.locationName" ng-click="chooseLocation()" placeholder="Set location">
+                </div>
+                 <div class="col-md-8 col-sm-12 padd-5">
+                    <p class="input-lable">Item Description</p>
+                    <textarea class="form-control my-input" rows="4" ng-model="add_Item.description"></textarea>
+                 </div>
+                <!--  <div class="col-md-4 col-sm-12">
+                    <img class="upload-new-img" src="images/upload-new-img.png">
+                    <p class="input-lable">Upload Image</p>
+                    <input type="file" id="new-imgupload" style="display:none"/>
+                 </div> -->
+                 <div class="col-md-4 col-sm-12">
+                   <div class="upload-img" ng-show="myAdd.image"> <img class="upload-new-img"  src="{{myAdd.image}}" ></div>
+                    <img class="upload-new-img"  src="images/upload-new-img.png" ng-show="!myAdd.image">
+                    <p class="input-lable">Upload Image</p>
+                  <input type="file" id="item-img" onchange="angular.element(this).scope().changeFile(this,'other','item-img')" style="display:none"/>
+                 </div>
+                <div class="col-md-12 padd-5" >
+                  <div class="col-md-3 col-sm-6 padd-5">
+                   <button class="mybtn" type="submit" ng-click="addItem1(add_Item,myAdd.locationName)" ><span>Publish</span> Item</button>
+                  </div>
+                  
+                </div>
+
+             </div>
+        
+      </div>
+      
+    </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade sign-modal" id="map-open-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="min-height: 498px;">
+      <div class="modal-body">
+            <input id="pac-input" class="form-control my-input max-width-input" type="text" placeholder="Search Box"  ng-show="isMapOpen">
+          <div id="map" style="width:100%;height:450px;" ng-show="isMapOpen"></div>
+      </div>
+      </div>
+     </div>
+     </div>
