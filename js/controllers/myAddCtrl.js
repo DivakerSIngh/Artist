@@ -41,8 +41,24 @@ $(document).ready(function(){
   $('.upload-new-img').click(function(){ $('#ad-img').trigger('click'); });
   $('.upload-new-img').click(function(){ $('#item-img').trigger('click'); });
   $('#write-post-upload-img').click(function(){ $('#post-upload-img').trigger('click'); });
-  $("#ex12b").slider({ id: "slider12b", min: 1, max: 1000, range: true, value:1});
+  $("#ex12b").slider(
+    { 
+      id: "slider12b",
+       min: 1, 
+       max: 1000,
+        range: true,
+         value:1,
+        
+        });
    $(".slider-handle.round").text("")
+   $('#ex12b').slider().change(function(event,val) {
+     var min=event.value.newValue[0];
+     var max=event.value.newValue[1];
+   var scope=angular.element(document.getElementById('mainMyAdd')).scope();
+   scope.sellItemData =$scope.fullAddArray.filter(x=>x.price>=min && x.price<=max);
+   $scope.$apply();
+
+    });
 });
 
   $scope.priceRange =1;
@@ -549,11 +565,13 @@ $scope.addItem1 = function(data,location_name){
 
 
  $scope.getAllItem =  function(){
+   debugger
    $scope.isSaved=false;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jview-items?limit=0',{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
    console.log("result>>>>>>>>>>>>>>>>>",results)
    $scope.sellItemData=results.data;
+   $scope.fullAddArray=results.data;
    $('#loading').hide();
     }).error(function(err){
       console.log(err)
