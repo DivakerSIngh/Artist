@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://jcrop-cdn.tapmodo.com/v0.9.12/js/jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://jcrop-cdn.tapmodo.com/v0.9.12/css/jquery.Jcrop.min.css">
 <div id="loading">
   <img id="loading-image" src="images/example.gif" alt="Loading..." />
 </div>
@@ -278,6 +280,7 @@ and link your artist profile to posted ads.</p>
               <img id="OpenImgUpload5" width="90" class="img-responsive" src="images/upload-img.png" ng-show="!userInfo.profileImage">
               <img id="OpenImgUpload5" style="margin-left: -10px" ng-show="userInfo.profileImage" width="90" class="img-responsive chat-pro-img" src="{{userInfo.profileImage}}">
               <input type="file" id="imgupload5" onchange="angular.element(this).scope().profileImageUplaod(this,'imgupload5')" style="display:none"/> 
+             
             </div>
             <p class="upload-lable">Upload Photo</p>
             
@@ -403,25 +406,99 @@ and link your artist profile to posted ads.</p>
     </form>
   </div>
 </div>
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Select An Image</h3>
+  </div>
+  <div class="modal-body">
+       <div>Select an image file: <input type="file" id="fileInput" /></div>
+  <div class="cropArea">
+    <img-crop image="myImage" area-type="rectangle" area-init-size="{ w:cropper.cropWidth,h:cropper.cropHeight}" cropject="cropper" result-image="myCroppedImage"></img-crop>
+  </div>
+</td>
+<td>
+  <div>Cropped Image:</div>
+  <div><img ng-src="{{myCroppedImage}}" /></div>
 
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
 
+  
+  
 
 <!-- Modal -->
-<div class="modal fade sign-modal" id="signup-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade sign-modal"  id="signup-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <style>
+    img#item-img-output {
+      width: 152px;
+    height: 154px;
+    border-radius: 50%;
+}
+</style>
   <div class="modal-dialog" role="document">
-   <form name="signupForm" novalidate>
+   <form name="signupForm" novalidate id="signupForm">
     <div class="modal-content">
       <div class="modal-body">
+         
         <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
         <img  width="240" class="img-responsive img-cent" src="images/logo-2.png">
         <h2 class="registrat">Registration</h2>
         <div class="col-sm-12 padd0">
           <div class="col-sm-3 padd7">
-            <p class="sign-up-lable">Personal Info</p>
+            <p class="sign-up-lable">Personal Infoasd  {{name}}</p>
             <div class="col-sm-12 padd0" >
-              <img id="OpenImgUpload" width="90" class="img-responsive" src="images/upload-img.png" ng-show="!userInfo.profileImage">
-              <img id="OpenImgUpload1" style="margin-left: -10px" ng-show="userInfo.profileImage" width="90" class="img-responsive chat-pro-img" src="{{userInfo.profileImage}}">
-              <input type="file" id="imgupload" onchange="angular.element(this).scope().profileImageUplaod(this,'imgupload')" style="display:none"/> 
+                <!-- <img id="OpenImgUpload1" style="margin-left: -10px" style="display: none;" ng-show="userInfo.profileImage" width="90" class="img-responsive chat-pro-img" src="{{userInfo.profileImage}}"> -->
+                <!-- <div id="views"></div> -->
+              <!-- <img id="OpenImgUpload" width="90" class="img-responsive" src="images/upload-img.png" ng-show="!userInfo.profileImage">
+              
+              <input type="file" id="imgupload" onchange="angular.element(this).scope().profileImageUplaod(this,'imgupload')" style="display:none"/>  -->
+              <!-- <button type="button" class="btn btn-default" ng-click="open()">Browse</button>
+              <input type="file" id="file">
+              <button id="cropbutton" type="button">Crop</button> -->
+              <!-- <div class="demo"></div> -->
+              <script src="../js/cropper/imagecropper.js"></script>
+              
+
+                <div class="container">
+                  <div class="row">
+                                <div class="col-xs-12">
+                                  <label class="cabinet center-block">
+                                    <figure>
+                                      <img src="" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                                      <figcaption><i class="fa fa-camera"></i></figcaption>
+                                    </figure>
+                                    <input type="file" class="item-img file center-block" name="file_photo"/>
+                                  </label>
+                                </div>
+                              </div>
+                </div>
+                
+                <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                  <!-- <?=multiLanguage( "Edit Foto" , "Edit Photo" )?> -->
+                                </h4>
+                              </div>
+                              <div class="modal-body">
+                                    <div id="upload-demo" class="center-block"></div>
+                              </div>
+                               <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="cropImageBtn" class="btn btn-primary">Crop</button>
+                      </div>
+                                </div>
+                              </div>
+                            </div>
+
+             
+             
             </div>
             <p class="upload-lable">Upload Photo</p>
             

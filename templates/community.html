@@ -1,0 +1,147 @@
+<!-- <div id="loading">
+    <img id="loading-image" src="images/example.gif" alt="Loading..." />
+  </div> -->
+  <section class="dashboard-section">
+    <div class="container-fluid dashboard-content">
+      <div class="col-ms-12">
+        <div ng-include="'templates/sub-header.html'"></div>
+  
+        <div class="col-sm-12" ng-init="getChats()">
+         
+          <div class="col-sm-10 padd-left-0">
+            <!-- Tab panes -->
+          
+  
+  
+            <!-- comunication list -->
+  
+            <div class="col-sm-10 padd-left-0">
+              <div class="col-sm-12 padd-0 scroll-right hight-list mCustomScrollbar" data-mcs-theme="minimal-dark" style="height: 58vh">
+                  <div class="col-sm-12">
+                      <div class="col-sm-2 profile-box">
+                        <h2 class="adds-near community-post">Community</h2>
+                       <ul class="my-ads-tab" role="tablist">
+                          
+                          <li><a href="#posted-ads" role="tab" data-toggle="tab">All Posted</a></li>
+                          <li><a href="#saved-ads" role="tab" data-toggle="tab">Favoritis Poste</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#write-post-modal-id">Cerat Poste</a></li>
+                          </ul>
+                       
+                      </div>
+                      <div class="col-sm-10 padd-left-0">
+                          <div class="col-sm-12">
+                           <h3 class="text-right">Share smothing with jodha's Community <i class="fa fa-share-square" aria-hidden="true"></i></h3>
+                         </div>
+                           
+                         </div>
+                        <div class="col-sm-10 padd-left-0">   
+                               <div class="col-sm-12 padd-0 scroll-right hight-list mCustomScrollbar" data-mcs-theme="minimal-dark" style="height: 58vh">
+                             <div class="col-sm-12 near-adds-list padd-0 active">
+                           <div class="col-sm-3 padd-7"><img class="img-responsive" src="images/add-thumb2.jpg" /></div>
+                           <div class="col-sm-9 padd-7">
+                             <div class="col-sm-12 padd-0">
+                               <div class="col-sm-6 padd-7">
+                                 <p class="add-titel">Item Name</p>
+                               </div>
+                               <div class="col-sm-6 padd-7">
+                                  <div class="add-menu">
+                                   <a href="#"><i class="glyphicon glyphicon-option-vertical"></i></a>
+                                   <ul class="adds-menu-list">
+                                     <li><a href="#"><<i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Edit Post</a></li>
+                                     <li><a href="#" data-toggle="modal" data-target="#share-adds-modal-id"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Delete</a></li>
+                                   </ul>
+                                 </div>
+                               </div>
+                             </div>
+                             <div class="col-sm-12 padd-7">
+                               <p class="add-type">Price - $20.30</p>
+                               <p class="add-discri">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since Lorem Ipsum</p>
+                               
+                             </div>
+                             <div class="col-sm-12 padd-0">
+                               <div class="col-sm-5 padd-7">
+                                 <p class="add-titel">Tag Artist</p>
+                                 <p class="add-type">@john Deo</p>
+                               </div>
+                               <div class="col-sm-7 padd-7">
+                                   <p class="add-posted-link comment-write right-text2"><a href="#" ><span>Commun</span>icate</a> &nbsp; &nbsp; &nbsp;  <a href="#" ><i class="fa fa-heart-o" aria-hidden="true"></i></a> &nbsp; &nbsp; &nbsp;<a href="#" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a> &nbsp; &nbsp; &nbsp;<a href="#" ><i class="fa fa-share-alt" aria-hidden="true"></i></a> </p>
+                               </div>
+                             </div>
+               
+                           </div>
+                        </div>
+               
+                     </div>
+  
+                    <!-- End -->
+                
+  
+  
+  
+  
+  
+  
+              </div>
+            </div>
+          </div>
+  
+  
+  
+        </div>
+  
+  </section>
+  
+<!--Linkld artist Adds Modal -->
+<div class="modal fade bs-example-modal-lg write-post-modal" id="write-post-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body" style="height: 380px;">
+          <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+          <h2 class="registrat">Write a Post</h2>
+          <div class="col-sm-12 write-post-sec">
+            <textarea class="form-control my-input" rows="5"></textarea>
+          </div>
+          <div class="col-sm-12 write-post-sec">
+            <div class="col-sm-5 padd0">
+              <div class="input-group write-post-tag">
+                <span class="input-group-addon" id="basic-addon3">Tag Artist</span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="@artistname">
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+              <p class="write-post-upload"><a href="" id="write-post-upload-img"><i class="fa fa-picture-o" aria-hidden="true"></i> Upload Video/Image</a></p>
+              <input id="post-upload-img" type="file" style="display: none;">
+            </div>
+          </div>
+          <div class="col-sm-12 write-post-sec">
+            <button class="mybtn" style="float: right;"><span>Po</span>st</button>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-box">
+      <button class="chat-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+      <button class="chat-minmi"><i class="fa fa-minus" aria-hidden="true"></i></button>
+      <div class="chat-header"><h2 class="titel">Communication</h2></div>
+      <div class="chat-body">
+        <p class="chat-mass-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <p class="chat-mass-right">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+      <div class="chat-foot">
+        <input type="text" class="chat-inn" name="" placeholder="Type here">
+        <button class="chat-send" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+    
+    </div>
+  <div ng-include="'templates/footer.html'"></div>
+  
+  
+  
+  
+
+  
+  <div ng-include="'templates/logout.html'"></div>

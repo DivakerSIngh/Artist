@@ -40,10 +40,10 @@
                 </div>
                  <div class="col-md-6 col-sm-6 padd-5">
                   <p class="input-lable">Ad Expiration Date </p>
-                  <!-- <datepicker>
-                   <input ng-model="date" type="text"/>
-                  </datepicker> -->
-                   <input type="date" class="form-control my-input max-width-input" id="calender" ng-model="myAdd.expire" placeholder="Select Date">
+                  <datepicker date-format="dd/M/yyyy" date-min-limit="{{mindate}}">
+                   <input ng-model="myAdd.expire" type="text" class="form-control my-input max-width-input" placeholder="Select Date"/>
+                  </datepicker>
+                   <!-- <input type="date" class="form-control my-input max-width-input" id="calender" ng-model="myAdd.expire" placeholder="Select Date"> -->
                 </div>
 
                  <div class="col-md-6 col-sm-6 padd-5">

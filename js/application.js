@@ -68,6 +68,21 @@ var ngJodha = angular.module('ngJodha',['ui.router','ngStorage','720kb.datepicke
             templateUrl:'templates/communication.html',
             controller:'AddCtrl'
          })
+
+         .state('community',{
+            url:'/community',
+            templateUrl:'templates/community.html',
+            controller:'AddCtrl'
+         })
+
+         .state('community1',{
+            url:'/community1',
+            templateUrl:'templates/community1.html',
+            controller:'communityCtrl'
+         })
+
+
+         
           .state('near_by_ads',{
             url:'/near_by_ads',
             templateUrl:'templates/near_by_ads.html',

@@ -1,20 +1,28 @@
+
 ngJodha.controller('AddCtrl',function($scope,$http,myCoordinates,$rootScope,$state,$localStorage,$location,$filter,$window){
+
+
+
+
+
 $rootScope.isHeader=true;
 $rootScope.isFooter=true;
 $scope.myAdd={};
+$scope.LocationObjectfromMap;
 $scope.userInfo={}
 $scope.isToggle=false;
 $scope.userData=$localStorage.users;
 $rootScope.userInfo=$localStorage.users;
 console.log("$rootScope.userInfo",$rootScope.userInfo);
 $scope.item_name='';
+$scope.mindate=new Date().toString();
 $(".modal-backdrop.in").hide();
 
 if($localStorage.users==undefined){
    $state.go('login');
 }
-
-
+// debugger
+// $('#calender').datepicker();
 $scope.chooseLocation=  function(){
   $scope.isMapOpen=true;
   $("#map-open-id").modal('show')
@@ -22,6 +30,10 @@ $scope.chooseLocation=  function(){
 
 
 $(document).ready(function(){
+
+
+
+
   $('.profile-menu-list li').click(function(){
     $('li').removeClass("active");
     $(this).addClass("active");
@@ -50,15 +62,19 @@ $(document).ready(function(){
          value:1,
         
         });
-   $(".slider-handle.round").text("")
-   $('#ex12b').slider().change(function(event,val) {
-     var min=event.value.newValue[0];
-     var max=event.value.newValue[1];
-   var scope=angular.element(document.getElementById('mainMyAdd')).scope();
-   scope.sellItemData =$scope.fullAddArray.filter(x=>x.price>=min && x.price<=max);
-   $scope.$apply();
+   $(".slider-handle.round").text("");
+   if($('#ex12b').slider()){
 
-    });
+    $('#ex12b').slider().change(function(event,val) {
+      var min=event.value.newValue[0];
+      var max=event.value.newValue[1];
+    var scope=angular.element(document.getElementById('mainMyAdd')).scope();
+    scope.sellItemData =$scope.fullAddArray.filter(x=>x.price>=min && x.price<=max);
+    $scope.$apply();
+ 
+     });
+   }
+ 
 });
 
   $scope.priceRange =1;
@@ -89,6 +105,7 @@ $scope.myMap=function() {
 var x = document.getElementById("demo");
 
 function getLocation() {
+  
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(geoData) {
     var mapCanvas = document.getElementById("map");
@@ -187,10 +204,14 @@ function showLocationAddress(e) {
 
 $scope.isToggle = false;
   $scope.searchNearByAd = function(radius,locationObject){
+    debugger
     $('#loading').show();
     if(locationObject){
     var latlng={lat: locationObject.lat, lng: locationObject.long,name:locationObject.name};
     }else{
+      if($scope.userData==undefined){
+        return false;
+      }
       var latlng = { lat: $scope.userData.data.latLong[0], lng: $scope.userData.data.latLong[0] };
       var geocoder = new google.maps.Geocoder;
         geocoder.geocode({'location': latlng}, function(results, status) {
@@ -217,6 +238,13 @@ $scope.isToggle = false;
     })
   
   }
+debugger
+// if (navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(function(geoData) {
+//     geoData.coords.latitude
+//     var location_obtained={"lat":e.lat(),"long":e.lng(),"name":$scope.myAdd.locationName}
+//   }
+// }
 
    $scope.searchNearByAd(6317);
 
@@ -365,6 +393,7 @@ $scope.logout=function(){
 
 $scope.userInfo.media=[]
 $scope.changeFile= function(fle,event,id){
+  
   console.log(id);
   $('#loading').show(); 
    var imageFiles = document.getElementById(id);
@@ -565,7 +594,7 @@ $scope.addItem1 = function(data,location_name){
 
 
  $scope.getAllItem =  function(){
-   debugger
+   
    $scope.isSaved=false;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jview-items?limit=0',{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
@@ -896,3 +925,5 @@ ngJodha.directive('scroll', function($timeout) {
     }
   }
 });
+
+

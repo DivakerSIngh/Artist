@@ -83,7 +83,11 @@
           <div class="col-sm-6 padd-7"  >
                  <input id="pac-input" class="controls" type="text" placeholder="Search Box"  ng-show="isMapOpen">
                  <!-- <div id="map" style="width:100%;height:200px;" ng-show="isMapOpen"></div> -->
-                  <p class="input-lable">Gastonia, NC, USA<!-- {{locationName}} --><p class="ranges">Radius &nbsp; <input class="rang-input" type="search" name="" value="100"> &nbsp; <span>Miles</span></p></p>
+                  <p class="input-lable">
+										{{locationName}}
+									<!-- {{locationName}} --><p class="ranges">
+										<!-- Radius -->
+										 &nbsp; <input class="rang-input" type="search" name="" value="100"> &nbsp; <span>Miles</span></p></p>
 <!--                  <p class="ranges">Radius &nbsp; <input class="rang-input" type="search" ng-model="radius" name="" placeholder="5"> &nbsp; <span>Miles</span></p> -->
                   <!-- <input type="text" id="serachResult" class="form-control my-input max-width-input" ng-model="myAdd.locationName" ng-click="chooseLocation()" placeholder="Set location"> -->
                 </div>
@@ -101,7 +105,7 @@
    			    			<p class="add-titel">{{add.title}}</p>
    			    		</div>
    			    		<div class="col-sm-6 padd-7">
-   			    			<p class="adds-date">Exist till AA: <span>{{add.expire | date}}</span></p>
+   			    			<p class="adds-date">Exist till: <span>{{add.expire | date}}</span></p>
    			    			<div class="add-menu">
    			    				<a href><i class="glyphicon glyphicon-option-vertical"></i></a>
    			    				<ul class="adds-menu-list" >
