@@ -1,4 +1,4 @@
-var ngJodha = angular.module('ngJodha',['ui.router','ngStorage','720kb.datepicker']);
+var ngJodha = angular.module('ngJodha',['ui.router','ngStorage','720kb.datepicker','angucomplete-alt']);
     
     ngJodha.run(function($state,$location,$rootScope,$localStorage){
         $rootScope.url='http://52.24.101.77:3002/';

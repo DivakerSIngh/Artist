@@ -1,5 +1,5 @@
 
-ngJodha.controller('AddCtrl',function($scope,$http,myCoordinates,$rootScope,$state,$localStorage,$location,$filter,$window){
+  ngJodha.controller('AddCtrl',function($scope,$http,myCoordinates,$rootScope,$state,$localStorage,$location,$filter,$window){
 
 
 
@@ -909,6 +909,139 @@ else{
    $rootScope.toggle=2;
 }
 
+
+  //#region community Section
+  $scope.allCommunity=[];
+  $scope.allFavCommunity=[];
+  $scope.mediaType="";
+  $scope.communityImage="";
+  var arr = new Array();
+  $scope.communityObject={
+    "userId":"","tagId":"","title":"","message":"" ,"medialType":"0","medialUrl":""
+  }
+  $scope.isFavClick=true;
+  $scope.faviorateCommunity;
+$scope.getAllCommunity=function(){
+  debugger
+  $('#loading').show();
+  $http.get($rootScope.url+'api/juser/jcommunity-all?userId='+$rootScope.userInfo.data._id,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    debugger
+    $('#loading').hide();
+    if(results.data){
+      $scope.allCommunity=results.data;
+      $scope.allFavCommunity=results.data.filter(x=>x.isFav==true);
+      angular.forEach(results.artists, function (item) {
+        arr.push({ artistName: item.firstName,artistId:item._id });
+    });
+
+    $scope.myArray = arr;
+    }else{
+       $scope.allCommunity=[];
+    }
+  }).error(function(err){
+    console.log(err);
+    $('#loading').hide();
+  })
+
+}
+
+$scope.getFaviorateCommunity=function(){
+
+  
+}
+
+$scope.makeFaviorateCommunity=function(item){
+debugger
+  $('#loading').show();
+  var data={"postId":item._id,"isFav":item.isFav}
+  $http.post($rootScope.url+'api/juser/jfav',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    debugger
+    $('#loading').hide();
+    $scope.getAllCommunity();
+  }).error(function(err){
+    console.log(err);
+    $('#loading').hide();
+  })
+}
+
+$scope.likeCommunity=function(item){
+  $('#loading').show();
+  $http.post($rootScope.url+'api/juser/jimage-upload',fd, {
+        
+    headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization}, transformRequest: angular.identity
+ }).success(function(responseData) {
+     console.log(responseData);
+     $scope.communityObject.medialUrl = responseData.imageURL;
+     $('#loading').hide();
+ }).error(function(err){
+   console.log(err)
+   $('#loading').hide();
+ })
+}
+
+$scope.shareCommunity=function(item){
+  
+}
+
+$scope.communityImageUplaod=function(test,imageId){
+  debugger
+  console.log(imageId)
+  $('#loading').show();
+	 var imageFiles = document.getElementById(imageId);
+	 var fd = new FormData();
+        fd.append('userImage',imageFiles.files[0]);
+        $scope.mediaType=imageFiles.files[0].type;
+        $http.post($rootScope.url+'api/juser/jimage-upload',fd, {
+        
+       headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization}, transformRequest: angular.identity
+    }).success(function(responseData) {
+        console.log(responseData);
+        $scope.communityObject.medialUrl = responseData.imageURL;
+        $('#loading').hide();
+    }).error(function(err){
+    	console.log(err)
+      $('#loading').hide();
+    })
+
+}
+
+$scope.saveCommunity=function(){
+debugger
+// var asas= selectedItem.artistId;
+$('#loading').show();
+$scope.communityObject.userId=$rootScope.userInfo.data._id;
+$scope.communityObject.medialType= $scope.mediaType=="video/mp4"?1:0;
+if($scope.communityObject.title=="" || $scope.communityObject.message=="" ){
+  alert("Title or Message reuired please fill first");
+  return false;
+}
+if($scope.communityObject.medialUrl==""){
+  alert("Please upload image first");
+  return false;
+}
+ 
+  $http.post($rootScope.url+'api/juser/jcommunity',$scope.communityObject, {
+  //  headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization}, transformRequest: angular.identity
+  headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
+}).success(function(responseData) {
+    console.log(responseData);
+    $scope.communityImage = responseData.imageURL;
+    $('#write-post-modal-id').modal('hide');
+    $('#loading').hide();
+    $scope.getAllCommunity();
+}).error(function(err){
+  console.log(err)
+  $('#loading').hide();
+})
+}
+
+$scope.editCommunity=function(item){
+  $scope.communityObject=item;
+  $('#write-post-modal-id').modal('show');
+}
+
+  //#endregion
+
 })
 
 
@@ -925,5 +1058,11 @@ ngJodha.directive('scroll', function($timeout) {
     }
   }
 });
+
+ngJodha.filter("trustUrl", ['$sce', function ($sce) {
+  return function (recordingUrl) {
+      return $sce.trustAsResourceUrl(recordingUrl);
+  };
+}]);
 
 
