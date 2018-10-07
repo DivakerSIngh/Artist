@@ -915,7 +915,12 @@ else{
   $scope.allFavCommunity=[];
   $scope.mediaType="";
   $scope.communityImage="";
+  $scope.modeType="Add";
+  $scope.chatText="";
   var arr = new Array();
+  $scope.comments=[];
+  $scope.userId;
+  $scope.postId="";
   $scope.communityObject={
     "userId":"","tagId":"","title":"","message":"" ,"medialType":"0","medialUrl":""
   }
@@ -923,6 +928,7 @@ else{
   $scope.faviorateCommunity;
 $scope.getAllCommunity=function(){
   debugger
+  $scope.userId=$rootScope.userInfo.data._id;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jcommunity-all?userId='+$rootScope.userInfo.data._id,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
     debugger
@@ -945,9 +951,19 @@ $scope.getAllCommunity=function(){
 
 }
 
-$scope.getFaviorateCommunity=function(){
+$scope.updateCommunity=function(item){
 
-  
+  debugger 
+  $('#loading').show();
+  var data={"userId":item._id,"title":$scope.communityObject.title,"message":$scope.communityObject.message ,"postId":$rootScope.userInfo.data._id }
+  $http.post($rootScope.url+'api/juser/jupdate-post',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    debugger
+    $('#loading').hide();
+    $scope.getAllCommunity();
+  }).error(function(err){
+    console.log(err);
+    $('#loading').hide();
+  })
 }
 
 $scope.makeFaviorateCommunity=function(item){
@@ -965,18 +981,17 @@ debugger
 }
 
 $scope.likeCommunity=function(item){
+  debugger
   $('#loading').show();
-  $http.post($rootScope.url+'api/juser/jimage-upload',fd, {
-        
-    headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization}, transformRequest: angular.identity
- }).success(function(responseData) {
-     console.log(responseData);
-     $scope.communityObject.medialUrl = responseData.imageURL;
-     $('#loading').hide();
- }).error(function(err){
-   console.log(err)
-   $('#loading').hide();
- })
+  var data={"postId":item._id,"isLike":item.isLike}
+  $http.post($rootScope.url+'api/juser/jlike',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    debugger
+    $('#loading').hide();
+    $scope.getAllCommunity();
+  }).error(function(err){
+    console.log(err);
+    $('#loading').hide();
+  })
 }
 
 $scope.shareCommunity=function(item){
@@ -1007,6 +1022,9 @@ $scope.communityImageUplaod=function(test,imageId){
 
 $scope.saveCommunity=function(){
 debugger
+if($scope.modeType=="Add"){
+
+
 // var asas= selectedItem.artistId;
 $('#loading').show();
 $scope.communityObject.userId=$rootScope.userInfo.data._id;
@@ -1034,10 +1052,64 @@ if($scope.communityObject.medialUrl==""){
   $('#loading').hide();
 })
 }
+else{
+
+  $('#loading').show();
+  var data={"userId":$rootScope.userInfo.data._id ,"title":$scope.communityObject.title,"message":$scope.communityObject.message ,"postId":$scope.communityObject._id}
+  $http.post($rootScope.url+'api/juser/jupdate-post',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    $('#loading').hide();
+    $('#write-post-modal-id').modal('hide');
+    $scope.getAllCommunity();
+  }).error(function(err){
+    console.log(err);
+    $('#loading').hide();
+  })
+}
+
+
+}
 
 $scope.editCommunity=function(item){
+  $scope.modeType="Update";
   $scope.communityObject=item;
   $('#write-post-modal-id').modal('show');
+}
+
+$scope.clickOnCommunity=function(item){
+  debugger
+  $scope.postId=item._id;
+  $scope.comments=item.comments;
+  $('#chatBox').slideToggle();
+
+}
+
+
+$scope.sendChat=function(){
+  debugger
+  $('#loading').show();
+  var data={"postId":$scope.postId,"comment":$scope.chatText}
+  $http.post($rootScope.url+'api/juser/jpost-comment',data,
+   {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}})
+   .success(function(results){
+    debugger
+   
+  }).error(function(err){
+    console.log(err);
+   
+  })
+
+}
+$scope.deleteCommunity=function(item){
+  debugger
+  $('#loading').show();
+  var data={"postId":item._id }
+  $http.post($rootScope.url+'api/juser/jdelete-post',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    $('#loading').hide();
+    $scope.getAllCommunity();
+  }).error(function(err){
+    console.log(err);
+    $('#loading').hide();
+  })
 }
 
   //#endregion
