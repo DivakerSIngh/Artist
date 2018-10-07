@@ -278,7 +278,8 @@
               placeholder="@artistname"
               maxlength="50"
               pause="100"
-              selected-object="selectedBook"
+              ng-click="selectResult(item)" 
+              selected-object="item"
               local-data="myArray"
               search-fields="artistName"
               title-field="artistName"
@@ -287,9 +288,9 @@
               match-class="highlight">
           </p>
 
-          <p ng-show="selectedBook">
-              <b>You selected</b>: {{selectedBook.artistId}}
-          </p>
+          <!-- <p ng-show="arr">
+              <b>You selected</b>: {{selectedBook.artistName}}
+          </p> -->
 
 
 

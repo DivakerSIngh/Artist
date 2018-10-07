@@ -998,6 +998,11 @@ $scope.shareCommunity=function(item){
   
 }
 
+$scope.selectResult=function(obj){
+  if(obj){
+    $scope.communityObject.tagId= obj.originalObject.artistId
+  }
+}
 $scope.communityImageUplaod=function(test,imageId){
   debugger
   console.log(imageId)
