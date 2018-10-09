@@ -1,4 +1,4 @@
-$(".gambar").attr("src", "images/upload-img.png");
+$(".gambar").attr("src", "images/upload-new-img.png");
 						var $uploadCrop,
 						tempFilename,
 						rawImg,
@@ -75,9 +75,32 @@ blob.name = "WP_20150330_13_28_23_Pro.jpg";
 blob.lastModified=new Date().getTime();
 blob.webkitRelativePath="";
 var scope=angular.element(document.getElementById('signupForm')).scope();
-scope.$apply(function () {
+debugger
+if(scope){
+    scope.$apply(function () {
     scope.uploadCropedImage(blob);
     });
+}
+
+var myAddScope=angular.element(document.getElementById('myAddDiv')).scope();
+if(myAddScope){
+    myAddScope.$apply(function () {
+        myAddScope.uploadCropedImageForMyAdd(blob);
+    });
+}
+
+var divModalSellShop=angular.element(document.getElementById('divModalSellShop')).scope();
+if(divModalSellShop){
+    divModalSellShop.$apply(function () {
+        divModalSellShop.uploadCropedImageForMyAdd(blob);
+    });
+}
+
+
+
+
+
+
 
 
 								$('#item-img-output').attr('src', resp);

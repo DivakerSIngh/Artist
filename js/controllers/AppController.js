@@ -75,6 +75,7 @@ ngJodha.controller('AppCtrl', function ($scope, $http, myCoordinates, $state, $r
 
 
     $scope.uploadCropedImage = function (file) {
+        debugger
         console.log(imageId)
         $('#loading').show();
         var fd = new FormData();
@@ -84,6 +85,14 @@ ngJodha.controller('AppCtrl', function ($scope, $http, myCoordinates, $state, $r
         }).success(function (responseData) {
             console.log(responseData);
             $scope.userInfo.profileImage = responseData.imageURL;
+        debugger
+            var scope=angular.element(document.getElementById('myAddDiv')).scope();
+            scope.$apply(function () {
+                $scope.myAdd.mediaData=[{"mediaUrl":responseData.imageURL,"mediaType":1}]
+                });
+
+
+
             $('#loading').hide();
         }).error(function (err) {
             console.log(err)

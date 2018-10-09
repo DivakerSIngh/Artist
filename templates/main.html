@@ -126,7 +126,7 @@
       <h3 class="sec-titel">Near By</h3>
       <div class="col-md-12 col-sm-12 col-xs-12 padd-50">
         <div class="col-md-4 col-sm-12 col-xs-12 padd0">
-          <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
+          <!-- <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
             <img class="img-responsive" src="images/artist1.jpg" />
             <div class="profile">
               <p class="profile-name">ROY Group</p>
@@ -135,8 +135,8 @@
               <p class="job-titel">view profile</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
-          <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
+          </div> -->
+          <!-- <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
             <img class="img-responsive" src="images/artist2.jpg" />
             <div class="profile">
               <p class="profile-name">John Doe</p>
@@ -145,11 +145,24 @@
               <p class="job-titel">Singer</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
-
+          </div> -->
+          <div class="col-md-12 col-sm-6 col-xs-12 img-hove" ng-repeat="item in userListData">
+              <img class="img-responsive" ng-src={{item.profileImage}} />
+              <div class="profile">
+                <p class="profile-name">{{item.firstName}}</p>
+                <p class="more-hide">{{item.lastName}}</p>
+                <div class="border"></div>
+                <p class="job-titel">{{item.denomination}}</p>
+              </div>
+              <div class="over-lap-box"></div>
+            </div>
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 padd0 padd-top-50">
-          <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
+
+       
+
+
+        <div class="col-md-4 col-sm-12 col-xs-12 padd0 padd-top-50" style="display: none;">
+          <!-- <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
             <img class="img-responsive" src="images/artist3.jpg" />
             <div class="profile">
               <p class="profile-name">ZXC</p>
@@ -158,8 +171,8 @@
               <p class="job-titel">praise dancers</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
-          <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
+          </div> -->
+          <!-- <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
             <img class="img-responsive" src="images/artist4.jpg" />
             <div class="profile">
               <p class="profile-name">DJ.XCZ</p>
@@ -168,7 +181,7 @@
               <p class="job-titel">dj</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
+          </div> -->
           <div class="clearfix"></div>
           <p class="see-more">
             <a href="#">
@@ -176,7 +189,7 @@
           </p>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 padd0">
-          <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
+          <!-- <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
             <img class="img-responsive" src="images/artist5.jpg" />
             <div class="profile">
               <p class="profile-name">ZXC</p>
@@ -185,8 +198,8 @@
               <p class="job-titel">director</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
-          <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
+          </div> -->
+          <!-- <div class="col-md-12 col-sm-6 col-xs-12 img-hove">
             <img class="img-responsive" src="images/artist6.jpg" />
             <div class="profile">
               <p class="profile-name">John Doe</p>
@@ -195,7 +208,7 @@
               <p class="job-titel">praise musician</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -205,16 +218,22 @@
       <h3 class="sec-titel">Near By</h3>
       <div class="col-md-12 col-xs-12 padd-50">
         <div class="col-md-12 col-xs-12 padd0">
-          <div class="col-md-12 col-xs-12 img-hove">
-            <img class="img-responsive respo-img" src="images/art-banner1.jpg" />
+          
+          
+          
+          <div class="col-md-12 col-xs-12 img-hove" ng-repeat="item in addListData">
+            <img class="img-responsive respo-img" ng-src="{{item.mediaData[0].mediaUrl}}" />
             <div class="profile respo-profile">
-              <p class="profile-name respo-name">Keyboardist Needed</p>
-              <p class="more-hide respo-hide">Grace Gospel Tabernacle Queens Village, NY Sundays @ 11am</p>
+              <p class="profile-name respo-name">{{item.title}}</p>
+              <p class="more-hide respo-hide">{{item.locationName}}</p>
               <div class="border"></div>
               <p class="job-titel low-sec-titel">apply now</p>
             </div>
             <div class="over-lap-box"></div>
           </div>
+
+
+<!-- 
           <div class="col-md-12 col-xs-12 img-hove">
             <img class="img-responsive respo-img" src="images/art-banner2.jpg" />
             <div class="profile respo-profile">
@@ -234,7 +253,7 @@
               <p class="job-titel low-sec-titel">apply now</p>
             </div>
             <div class="over-lap-box"></div>
-          </div>
+          </div> -->
 
           <div class="clearfix"></div>
           <p class="see-more">

@@ -426,6 +426,25 @@ $scope.changeFile= function(fle,event,id){
  }
 
 
+
+ $scope.uploadCropedImageForMyAdd = function (file) {
+  debugger
+  console.log(imageId)
+  $('#loading').show();
+  var fd = new FormData();
+  fd.append('userImage', file);
+  $http.post($rootScope.url + 'api/juser/jimage-upload', fd, {
+      headers: { 'Content-Type': undefined, 'Authorization': $rootScope.authrization }, transformRequest: angular.identity
+  }).success(function (responseData) {
+    $scope.myAdd.mediaData=[{"mediaUrl":responseData.imageURL,"mediaType":1}];
+    $scope.myAdd.image=responseData.imageURL;
+      $('#loading').hide();
+  }).error(function (err) {
+      console.log(err)
+      $('#loading').hide();
+  })
+}
+
  
  $scope.addArtist = function(){
   console.log($scope.addArtistInfo)

@@ -7,7 +7,7 @@
    <div class="col-ms-12">
 <div ng-include="'templates/sub-header.html'"></div>
    
-    <div class="col-sm-12">
+    <div class="col-sm-12" id="myAddDiv">
    		<div class="col-sm-2 profile-box">
    			<h2 class="adds-near" ng-show="userData.data.roleId=='1'">My ADs</h2>
         <h2 class="adds-near" ng-show="userData.data.roleId=='2'">Post New ADs</h2>
@@ -40,7 +40,7 @@
                 </div>
                  <div class="col-md-6 col-sm-6 padd-5">
                   <p class="input-lable">Ad Expiration Date </p>
-                  <datepicker date-format="dd/M/yyyy" date-min-limit="{{mindate}}">
+                  <datepicker date-format="M/dd/yyyy" date-min-limit="{{mindate}}">
                    <input ng-model="myAdd.expire" type="text" class="form-control my-input max-width-input" placeholder="Select Date"/>
                   </datepicker>
                    <!-- <input type="date" class="form-control my-input max-width-input" id="calender" ng-model="myAdd.expire" placeholder="Select Date"> -->
@@ -65,8 +65,8 @@
                     <textarea class="form-control my-input" ng-model="myAdd.about" rows="4"></textarea>
                  </div>
                  <div class="col-md-4 col-sm-12">
-                    <img class="upload-new-img"  src="{{myAdd.mediaData[0].mediaUrl}}" ng-show="myAdd.mediaData[0].mediaUrl">
-                    <img class="upload-new-img"  src="images/upload-new-img.png" ng-show="!myAdd.mediaData[0].mediaUrl">
+                    <img class="upload-new-img" style="display: none;"  src="{{myAdd.mediaData[0].mediaUrl}}" ng-show="myAdd.mediaData[0].mediaUrl">
+                    <img class="upload-new-img" style="display: none;"  src="images/upload-new-img.png" ng-show="!myAdd.mediaData[0].mediaUrl">
                     <p class="input-lable">Upload Image</p>
                   <input type="file" id="ad-img" onchange="angular.element(this).scope().changeFile(this,'file3','ad-img')" style="display:none"/>
 
