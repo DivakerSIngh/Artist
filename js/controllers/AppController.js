@@ -94,6 +94,7 @@ ngJodha.controller('AppCtrl', function ($scope, $http, myCoordinates, $state, $r
 
     $('#loading').hide();
     $scope.changeFile = function (fle, event) {
+        debugger
         $('#loading').show();
         var imageFiles = document.getElementById("imgupload2");
         var fd = new FormData();
@@ -519,9 +520,11 @@ ngJodha.controller('AppCtrl', function ($scope, $http, myCoordinates, $state, $r
     getUserList();
     getAddList();
     function getUserList() {
+        debugger
         $http.get($rootScope.url + 'api/juser/homenear-user', {
             headers: { 'Content-Type': 'application/json', 'Authorization': $rootScope.authrization }
         }).success(function (responseData) {
+            console.log(responseData.data);
             $scope.userListData = responseData.data;
             $('#loading').hide();
         }).error(function (err) {

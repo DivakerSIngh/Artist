@@ -127,14 +127,17 @@
                       <div class="col-sm-9 padd-7">
                         <div class="col-sm-12 padd-0">
                           <div class="col-sm-6 padd-7">
-                            <p class="add-titel">{{item.title}}</p>
+                            <p class="add-titel">{{item.title}}
+                            </p>
                           </div>
                           <div class="col-sm-6 padd-7">
                             <div class="add-menu">
                               <a href="#">
                                 <i class="glyphicon glyphicon-option-vertical"></i>
                               </a>
-                              <ul class="adds-menu-list">
+                             
+                              <ul class="adds-menu-list" ng-if="item.artistId._id==userId">
+                                
                                 <li>
                                   <a href="#" ng-click="editCommunity(item)">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Edit Post</a>
@@ -155,7 +158,7 @@
                         <div class="col-sm-12 padd-0">
                           <div class="col-sm-5 padd-7">
                             <p class="add-titel">Tag Artist</p>
-                            <p class="add-type">@{{item.artistId.firstName}} </p>
+                            <p class="add-type" ng-repeat="ar in item.tagIds">@{{ar.tagId.firstName}} </p>
                           </div>
                           <div class="col-sm-7 padd-7">
                             <p class="add-posted-link comment-write right-text2">

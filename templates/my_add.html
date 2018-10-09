@@ -69,6 +69,50 @@
                     <img class="upload-new-img"  src="images/upload-new-img.png" ng-show="!myAdd.mediaData[0].mediaUrl">
                     <p class="input-lable">Upload Image</p>
                   <input type="file" id="ad-img" onchange="angular.element(this).scope().changeFile(this,'file3','ad-img')" style="display:none"/>
+
+                  <script src="../js/cropper/imagecropper.js"></script>
+
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <label class="cabinet center-block">
+                          <figure>
+                            <img src="images/upload-img.png" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                            <figcaption>
+                              <i class="fa fa-camera"></i>
+                            </figcaption>
+                          </figure>
+                          <input type="file" class="item-img file center-block" name="file_photo" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <!-- <?=multiLanguage( "Edit Foto" , "Edit Photo" )?> -->
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div id="upload-demo" class="center-block"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" data-prop="myAdd" id="cropImageBtn" class="btn btn-primary">Crop</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
                  </div>
                 <div class="col-md-12 padd-5">
                   <div class="col-md-3 col-sm-6 padd-5">
