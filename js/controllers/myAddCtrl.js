@@ -29,6 +29,36 @@ $scope.chooseLocation=  function(){
 }
 
 
+
+//RK Chauhan
+
+GetAllArtist();
+function GetAllArtist(){
+      $http.get($rootScope.url + 'api/juser/artists', {
+        headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
+        // headers: { 'Content-Type': 'application/json', 'Authorization': $rootScope.authrization }
+    }).success(function (responseData) {
+    $scope.listAllArtist=responseData.data;
+        $('#loading').hide();
+    }).error(function (err) {
+        $('#loading').hide();
+    })
+}
+$scope.SaveThisAdd=function(addId){
+  $http.post($rootScope.url+'api/juser/jsave-adds',{addId}, {
+    headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
+    }).success(function(responseData) {
+        $('#loading').hide();
+    }).error(function(err){
+      console.log(err)
+      $('#loading').hide();
+    })
+}
+//End RK Chauhan
+
+
+
+
 $(document).ready(function(){
 
 
@@ -204,7 +234,6 @@ function showLocationAddress(e) {
 
 $scope.isToggle = false;
   $scope.searchNearByAd = function(radius,locationObject){
-    debugger
     $('#loading').show();
     if(locationObject){
     var latlng={lat: locationObject.lat, lng: locationObject.long,name:locationObject.name};
@@ -238,7 +267,6 @@ $scope.isToggle = false;
     })
   
   }
-debugger
 // if (navigator.geolocation) {
 //   navigator.geolocation.getCurrentPosition(function(geoData) {
 //     geoData.coords.latitude
@@ -428,7 +456,6 @@ $scope.changeFile= function(fle,event,id){
 
 
  $scope.uploadCropedImageForMyAdd = function (file) {
-  debugger
   console.log(imageId)
   $('#loading').show();
   var fd = new FormData();
@@ -946,11 +973,9 @@ else{
   $scope.isFavClick=true;
   $scope.faviorateCommunity;
 $scope.getAllCommunity=function(){
-  debugger
   $scope.userId=$rootScope.userInfo.data._id;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jcommunity-all?userId='+$rootScope.userInfo.data._id,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
-    debugger
     $('#loading').hide();
     if(results.data){
       $scope.allCommunity=results.data;
@@ -971,12 +996,9 @@ $scope.getAllCommunity=function(){
 }
 
 $scope.updateCommunity=function(item){
-
-  debugger 
   $('#loading').show();
   var data={"userId":item._id,"title":$scope.communityObject.title,"message":$scope.communityObject.message ,"postId":$rootScope.userInfo.data._id }
   $http.post($rootScope.url+'api/juser/jupdate-post',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
-    debugger
     $('#loading').hide();
     $scope.getAllCommunity();
   }).error(function(err){
@@ -990,7 +1012,6 @@ debugger
   $('#loading').show();
   var data={"postId":item._id,"isFav":item.isFav}
   $http.post($rootScope.url+'api/juser/jfav',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
-    debugger
     $('#loading').hide();
     $scope.getAllCommunity();
   }).error(function(err){
@@ -1000,11 +1021,9 @@ debugger
 }
 
 $scope.likeCommunity=function(item){
-  debugger
   $('#loading').show();
   var data={"postId":item._id,"isLike":item.isLike}
   $http.post($rootScope.url+'api/juser/jlike',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
-    debugger
     $('#loading').hide();
     $scope.getAllCommunity();
   }).error(function(err){
@@ -1023,7 +1042,6 @@ $scope.selectResult=function(obj){
   }
 }
 $scope.communityImageUplaod=function(test,imageId){
-  debugger
   console.log(imageId)
   $('#loading').show();
 	 var imageFiles = document.getElementById(imageId);
@@ -1100,7 +1118,6 @@ $scope.editCommunity=function(item){
 }
 
 $scope.clickOnCommunity=function(item){
-  debugger
   $scope.postId=item._id;
   $scope.comments=item.comments;
   $('#chatBox').slideToggle();
@@ -1109,13 +1126,11 @@ $scope.clickOnCommunity=function(item){
 
 
 $scope.sendChat=function(){
-  debugger
   $('#loading').show();
   var data={"postId":$scope.postId,"comment":$scope.chatText}
   $http.post($rootScope.url+'api/juser/jpost-comment',data,
    {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}})
    .success(function(results){
-    debugger
    
   }).error(function(err){
     console.log(err);
@@ -1124,7 +1139,6 @@ $scope.sendChat=function(){
 
 }
 $scope.deleteCommunity=function(item){
-  debugger
   $('#loading').show();
   var data={"postId":item._id }
   $http.post($rootScope.url+'api/juser/jdelete-post',data, {headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
