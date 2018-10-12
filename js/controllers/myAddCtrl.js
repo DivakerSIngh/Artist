@@ -28,7 +28,7 @@ $scope.chooseLocation=  function(){
   $("#map-open-id").modal('show')
 }
 
-
+getAllLinkData();
 
 //RK Chauhan
 
@@ -44,6 +44,8 @@ function GetAllArtist(){
         $('#loading').hide();
     })
 }
+
+
 $scope.SaveThisAdd=function(addId){
   $http.post($rootScope.url+'api/juser/jsave-adds',{addId}, {
     headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
@@ -56,7 +58,28 @@ $scope.SaveThisAdd=function(addId){
 }
 //End RK Chauhan
 
+//#region all three link saved private and public array
+$scope.allLinkArray=[];
+$scope.saveLinkArray=[];
+$scope.privateLinkArray=[];
+$scope.publicLinkArray=[];
 
+function getAllLinkData(){
+  debugger
+      $http.get($rootScope.url + 'api/juser/jpublic-private-save', {
+        headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
+    }).success(function (responseData) {
+      $scope.allLinkArray=responseData.data;
+      $scope.privateLinkArray=responseData.data.privateAdds;
+      $scope.saveLinkArray=responseData.data.saveAdds;
+      $scope.publicLinkArray=responseData.data.publicAdds;
+        $('#loading').hide();
+    }).error(function (err) {
+        $('#loading').hide();
+    })
+}
+
+//#endregion
 
 
 $(document).ready(function(){
