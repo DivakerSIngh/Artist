@@ -79,6 +79,39 @@ function getAllLinkData(){
     })
 }
 
+$scope.toggleClass=function(id){
+  debugger
+$('#'+id).toggleClass('active');
+
+}
+$scope.addIdforShareAdd;
+$scope.setShareAddId=function(obj){
+  $scope.addIdforShareAdd=obj;
+}
+
+$scope.shareAdd=function(){
+  debugger
+  
+var arr=[];
+$('.share-add-img').each(function(){
+if($(this).hasClass('active')){
+  arr.push({userId:$(this).attr('data-ref')})
+}
+
+})
+
+var request={"share":arr,"addId":$scope.addIdforShareAdd};
+$http.post($rootScope.url+'api/juser/jadd-artist',{request}, {
+  headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
+  }).success(function(responseData) {
+      $('#loading').hide();
+  }).error(function(err){
+    console.log(err)
+    $('#loading').hide();
+  })
+
+}
+
 //#endregion
 
 
@@ -101,6 +134,7 @@ $(document).ready(function(){
   $('.share-add-img').click(function(){
     $(this).toggleClass("active");
    });
+
 
   $('.upload-new-img').click(function(){ $('#new-imgupload').trigger('click'); });
   $('.upload-new-img').click(function(){ $('#ad-img').trigger('click'); });
@@ -283,6 +317,7 @@ $scope.isToggle = false;
     
      $http.get($rootScope.url+'api/juser/jnear-adds?limit=0&lat='+latlng.lat+'&long='+latlng.lng+'&distance='+$scope.radius+'&search='+latlng.name,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
       console.log("res",results)
+      debugger
       $scope.addData=results.data;
        $('#loading').hide();
     }).error(function(){

@@ -130,7 +130,9 @@ ngJodha.controller('AppCtrl', function ($scope, $http, myCoordinates, $state, $r
             $(this).toggleClass("active");
         });
 
-
+$(document).on('click','.share-add-img',function(){
+    $(this).toggleClass("active");
+})
         $('.share-add-img').click(function () {
             $(this).toggleClass("active");
         });
