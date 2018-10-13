@@ -87,10 +87,14 @@ ngJodha.controller('AppCtrl', function ($scope, $http, myCoordinates, $state, $r
             $scope.userInfo.profileImage = responseData.imageURL;
         debugger
             var scope=angular.element(document.getElementById('myAddDiv')).scope();
+          if(scope){
+
             scope.$apply(function () {
                 $scope.myAdd.mediaData=[{"mediaUrl":responseData.imageURL,"mediaType":1}]
                 });
 
+          }
+           
 
 
             $('#loading').hide();

@@ -788,6 +788,22 @@ a:focus, a:hover{
 	font-weight: 300;
 	font-size: 30px;
 }
+
+.profile-das-noti span{
+	position: absolute;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    font-size: 12px;
+    margin-left: -25px;
+    margin-top: -3px;
+    background: #15d4a0;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 3px;
+    line-height: 13px;
+}
 .profile-details li.profile-das-noti a{
 	font-family: 'Dosis', sans-serif;
 	font-weight: 300;

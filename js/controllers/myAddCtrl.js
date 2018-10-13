@@ -4,7 +4,7 @@
 
 
 
-
+    $rootScope.notificationCount=0;
 $rootScope.isHeader=true;
 $rootScope.isFooter=true;
 $scope.myAdd={};
@@ -32,13 +32,51 @@ getAllLinkData();
 
 //RK Chauhan
 
-GetAllArtist();
-function GetAllArtist(){
+$scope.getNotificationData = function(){
+  
+  $http.get($rootScope.url+'api/juser/jnotification',{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+  debugger
+  if(results.code){
+    $scope.notificationData=results.data;
+    $rootScope.notificationCount=results.count;
+  }
+   
+  
+   }).error(function(err){
+     console.log(err)
+   }) 
+ 
+}
+
+
+$scope.viewNotification=function(id){
+$http.post($rootScope.url+'api/juser/jnotification',{"notifiactionId":id},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}})
+.success(function(results){
+  debugger
+  $('#loading').hide();
+  $rootScope.notificationCount=results.count;
+}).error(function(err){
+  console.log(err)
+  $('#loading').hide();
+})
+}
+
+
+$scope.GetAllArtist=function (shareArray){
       $http.get($rootScope.url + 'api/juser/artists', {
         headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
         // headers: { 'Content-Type': 'application/json', 'Authorization': $rootScope.authrization }
     }).success(function (responseData) {
-    $scope.listAllArtist=responseData.data;
+      debugger
+      // responseData.data.filter(function(ele){
+      //   return shareArray.indexOf(el) < 0;
+
+      // })
+      var filteredArray  = responseData.data.filter(function(array_el){
+        return shareArray.filter(function(anotherOne_el){
+           return anotherOne_el.userId._id == array_el._id;
+        }).length == 0});
+        $scope.listAllArtist=filteredArray;
         $('#loading').hide();
     }).error(function (err) {
         $('#loading').hide();
@@ -46,16 +84,20 @@ function GetAllArtist(){
 }
 
 
-$scope.SaveThisAdd=function(addId){
-  $http.post($rootScope.url+'api/juser/jsave-adds',{addId}, {
-    headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
-    }).success(function(responseData) {
-        $('#loading').hide();
+$scope.SaveThisAdd=function(id){
+
+    $http.post($rootScope.url+'api/juser/jsave-adds',{"addId":id},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}})
+    .success(function(results){
+      debugger
+      $('#loading').hide();
     }).error(function(err){
       console.log(err)
       $('#loading').hide();
     })
 }
+
+
+
 //End RK Chauhan
 
 //#region all three link saved private and public array
@@ -85,8 +127,15 @@ $('#'+id).toggleClass('active');
 
 }
 $scope.addIdforShareAdd;
+$scope.filterData=[];
 $scope.setShareAddId=function(obj){
-  $scope.addIdforShareAdd=obj;
+  debugger
+  $scope.addIdforShareAdd=obj._id;
+  $scope.GetAllArtist(obj.share);
+
+
+
+
 }
 
 $scope.shareAdd=function(){
@@ -95,22 +144,37 @@ $scope.shareAdd=function(){
 var arr=[];
 $('.share-add-img').each(function(){
 if($(this).hasClass('active')){
-  arr.push({userId:$(this).attr('data-ref')})
+  arr.push({"userId":$(this).attr('data-ref')})
 }
 
 })
 
-var request={"share":arr,"addId":$scope.addIdforShareAdd};
-$http.post($rootScope.url+'api/juser/jadd-artist',{request}, {
-  headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
-  }).success(function(responseData) {
-      $('#loading').hide();
+//var request={"share":arr,"addId":$scope.addIdforShareAdd};
+//$http.post($rootScope.url+'api/juser/jadd-artist',{"share":[{"userId":$localStorage.users.data._id}],"addId":temp},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+  $http.post($rootScope.url+'api/juser/jadd-artist',{"share":arr,"addId":$scope.addIdforShareAdd},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    $('#share-adds-modal-id').modal('hide');
+    $('#loading').hide();
   }).error(function(err){
     console.log(err)
     $('#loading').hide();
   })
 
 }
+
+$scope.saveAdd=function(obj){
+  debugger
+  
+  $http.post($rootScope.url+'api/juser/jadd-artist',{"share":arr,"addId":$scope.addIdforShareAdd},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    $('#share-adds-modal-id').modal('hide');
+    $('#loading').hide();
+  }).error(function(err){
+    console.log(err)
+    $('#loading').hide();
+  })
+
+}
+
+
 
 //#endregion
 
@@ -289,6 +353,7 @@ function showLocationAddress(e) {
      });
 }
 
+
 $scope.isToggle = false;
   $scope.searchNearByAd = function(radius,locationObject){
     $('#loading').show();
@@ -316,9 +381,10 @@ $scope.isToggle = false;
     $scope.radius=radius;
     
      $http.get($rootScope.url+'api/juser/jnear-adds?limit=0&lat='+latlng.lat+'&long='+latlng.lng+'&distance='+$scope.radius+'&search='+latlng.name,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
-      console.log("res",results)
+      console.log("nearByadd",results)
       debugger
       $scope.addData=results.data;
+      $rootScope.notificationCount=results.count;
        $('#loading').hide();
     }).error(function(){
 
@@ -442,6 +508,7 @@ $scope.fillArtist = function(event,index,artist){
     console.log($scope.addArtistInfo);
      $http.post($rootScope.url+'api/juser/jfill-artist',artistData,{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
       console.log(results)
+      $rootScope.notificationCount=results.count;
       //$("#link-artist-modal-id-3").modal('hide')
       $scope.getAllAdd()
        $('#loading').hide();
@@ -627,6 +694,7 @@ $scope.completedAndClosedAd = function(){
       $('#loading').show();
     $http.get($rootScope.url+'api/juser/jnear-users',{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
       console.log("all artists",results.data.length)
+      debugger
       $scope.artistData=results.data;
       /*for(var i=0;i<$scope.artistData.length;i++){
        if(i=2){
@@ -702,7 +770,8 @@ $scope.addItem1 = function(data,location_name){
    $scope.isSaved=false;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jview-items?limit=0',{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
-   console.log("result>>>>>>>>>>>>>>>>>",results)
+   console.log("result>>>>>>>>>>>>>>>>>",results);
+   $rootScope.notificationCount=results.count;
    $scope.sellItemData=results.data;
    $scope.fullAddArray=results.data;
    $('#loading').hide();
@@ -1035,6 +1104,7 @@ $scope.getAllCommunity=function(){
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jcommunity-all?userId='+$rootScope.userInfo.data._id,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
     $('#loading').hide();
+    $rootScope.notificationCount=results.count;
     if(results.data){
       $scope.allCommunity=results.data;
       $scope.allFavCommunity=results.data.filter(x=>x.isFav==true);
@@ -1167,6 +1237,20 @@ else{
 }
 
 
+}
+
+
+// imageExists(imageUrl, function(exists) {
+//   //Show the result
+//   alert('Fileexists=' + exists);
+// });
+
+
+$scope.imageExists=function (url, callback) {
+  var img = new Image();
+  img.onload = function() { callback(true); };
+  img.onerror = function() { callback(false); };
+  img.src = url;
 }
 
 $scope.editCommunity=function(item){

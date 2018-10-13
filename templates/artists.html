@@ -293,7 +293,11 @@
          <div class="col-sm-9 padd-0">
            <p class="artist-card-name">Other Media</p><br>
            <ul class="card-top-rest">
-             <li ng-repeat="imageurl in viewArtistsData.media"><img class="img-responsive" src="{{imageurl.url}}" /></li>
+             <li ng-repeat="imageurl in viewArtistsData.media">
+                {{imageurl}}
+               <img ng-if="mediaType" class="img-responsive" src="{{imageurl.url}}" />
+              
+              </li>
             <!--  <li><img class="img-responsive" src="images/video-2.jpg" /></li>
              <li><img class="img-responsive" src="images/video-3.jpg" /></li> -->
            </ul>

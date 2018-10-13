@@ -8,7 +8,9 @@
    			<ul class="profile-details">
                <li class="profile-das-name"><a href="">{{userData.data.firstName}} {{userData.data.lastName}} </a></li>
                <li class="profile-das-mass"><span>0</span><a ui-sref="communication">Messages</a></li>
-               <li class="profile-das-noti"><a ui-sref="notification">Notifications</a></li>
+               <li class="profile-das-noti"><span>{{notificationCount}}
+
+			   </span><a ui-sref="notification">Notifications</a></li>
    			</ul>
    			<ul class="profile-sub-head">
    				<li class="profile-sub-img"><a class="" ui-sref="profile">Profile</a></li>
