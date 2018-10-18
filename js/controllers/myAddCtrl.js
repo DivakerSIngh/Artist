@@ -85,10 +85,11 @@ $scope.GetAllArtist=function (shareArray){
 
 
 $scope.SaveThisAdd=function(id){
-
+    $('#loading').show();
     $http.post($rootScope.url+'api/juser/jsave-adds',{"addId":id},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}})
     .success(function(results){
-      debugger
+        debugger
+        location.reload();
       $('#loading').hide();
     }).error(function(err){
       console.log(err)
@@ -139,8 +140,8 @@ $scope.setShareAddId=function(obj){
 }
 
 $scope.shareAdd=function(){
-  debugger
-  
+    debugger
+    $('#loading').show();
 var arr=[];
 $('.share-add-img').each(function(){
 if($(this).hasClass('active')){
@@ -153,7 +154,8 @@ if($(this).hasClass('active')){
 //$http.post($rootScope.url+'api/juser/jadd-artist',{"share":[{"userId":$localStorage.users.data._id}],"addId":temp},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
   $http.post($rootScope.url+'api/juser/jadd-artist',{"share":arr,"addId":$scope.addIdforShareAdd},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
     $('#share-adds-modal-id').modal('hide');
-    $('#loading').hide();
+      $('#loading').hide();
+      location.reload();
   }).error(function(err){
     console.log(err)
     $('#loading').hide();
@@ -162,8 +164,8 @@ if($(this).hasClass('active')){
 }
 
 $scope.saveAdd=function(obj){
-  debugger
-  
+    debugger
+    $('#loading').show();
   $http.post($rootScope.url+'api/juser/jadd-artist',{"share":arr,"addId":$scope.addIdforShareAdd},{headers:{'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
     $('#share-adds-modal-id').modal('hide');
     $('#loading').hide();
@@ -195,9 +197,9 @@ $(document).ready(function(){
    });
 
   
-  $('.share-add-img').click(function(){
-    $(this).toggleClass("active");
-   });
+  //$('.share-add-img').click(function(){
+  //  $(this).toggleClass("active");
+  // });
 
 
   $('.upload-new-img').click(function(){ $('#new-imgupload').trigger('click'); });
