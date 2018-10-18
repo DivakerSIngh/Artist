@@ -540,7 +540,7 @@ $(document).on('click','.share-add-img',function(){
             headers: { 'Content-Type': 'application/json', 'Authorization': $rootScope.authrization }
         }).success(function (responseData) {
             console.log(responseData.data);
-            $scope.userListData = responseData.data;
+            $scope.userListData =responseData.data.slice(1,6);// responseData.data;
             $('#loading').hide();
         }).error(function (err) {
             $('#loading').hide();
@@ -553,7 +553,7 @@ $(document).on('click','.share-add-img',function(){
         }).success(function (responseData) {
 
             debugger
-            $scope.addListData = responseData.data;
+            $scope.addListData  =responseData.data.slice(1,6);// responseData.data;
 
             $('#loading').hide();
         }).error(function (err) {
