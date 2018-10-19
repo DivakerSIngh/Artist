@@ -599,6 +599,25 @@ $scope.changeFile= function(fle,event,id){
   })
 }
 
+
+
+$scope.uploadCropedImageForComunity = function (file) {
+  console.log(imageId)
+  $('#loading').show();
+  var fd = new FormData();
+  fd.append('userImage', file);
+  $http.post($rootScope.url + 'api/juser/jimage-upload', fd, {
+      headers: { 'Content-Type': undefined, 'Authorization': $rootScope.authrization }, transformRequest: angular.identity
+  }).success(function (responseData) {
+   //$scope.comunity.mediaData=[{"mediaUrl":responseData.imageURL,"mediaType":1}];
+    $scope.communityObject.medialUrl=responseData.imageURL;
+      $('#loading').hide();
+  }).error(function (err) {
+      console.log(err)
+      $('#loading').hide();
+  })
+}
+
  
  $scope.addArtist = function(){
   console.log($scope.addArtistInfo)
@@ -1102,6 +1121,7 @@ else{
   $scope.isFavClick=true;
   $scope.faviorateCommunity;
 $scope.getAllCommunity=function(){
+  debugger
   $scope.userId=$rootScope.userInfo.data._id;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jcommunity-all?userId='+$rootScope.userInfo.data._id,{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
@@ -1112,7 +1132,7 @@ $scope.getAllCommunity=function(){
       $scope.allFavCommunity=results.data.filter(x=>x.isFav==true);
       angular.forEach(results.artists, function (item) {
         arr.push({ artistName: item.firstName,artistId:item._id });
-    });
+      });
 
     $scope.myArray = arr;
     }else{
@@ -1172,12 +1192,14 @@ $scope.selectResult=function(obj){
   }
 }
 $scope.communityImageUplaod=function(test,imageId){
+  debugger
   console.log(imageId)
   $('#loading').show();
 	 var imageFiles = document.getElementById(imageId);
 	 var fd = new FormData();
         fd.append('userImage',imageFiles.files[0]);
-        $scope.mediaType=imageFiles.files[0].type;
+        //$scope.mediaType=imageFiles.files[0].type;
+        $scope.mediaType="video/mp4";
         $http.post($rootScope.url+'api/juser/jimage-upload',fd, {
         
        headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization}, transformRequest: angular.identity
@@ -1194,11 +1216,12 @@ $scope.communityImageUplaod=function(test,imageId){
 
 $scope.saveCommunity=function(){
 debugger
+$scope.mediaType="";
 if($scope.modeType=="Add"){
 
 
 // var asas= selectedItem.artistId;
-$('#loading').show();
+
 $scope.communityObject.userId=$rootScope.userInfo.data._id;
 $scope.communityObject.medialType= $scope.mediaType=="video/mp4"?1:0;
 if($scope.communityObject.title=="" || $scope.communityObject.message=="" ){
@@ -1210,12 +1233,14 @@ if($scope.communityObject.medialUrl==""){
   return false;
 }
  
+$('#loading').show();
   $http.post($rootScope.url+'api/juser/jcommunity',$scope.communityObject, {
   //  headers: { 'Content-Type': undefined,'Authorization':$rootScope.authrization}, transformRequest: angular.identity
   headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}
 }).success(function(responseData) {
     console.log(responseData);
     $scope.communityImage = responseData.imageURL;
+    $scope.communityObject.medialUrl="";
     $('#write-post-modal-id').modal('hide');
     $('#loading').hide();
     $scope.getAllCommunity();

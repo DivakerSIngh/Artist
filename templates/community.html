@@ -122,7 +122,7 @@
                     <div ng-if="isFavClick" class="col-sm-12 near-adds-list padd-0 active" ng-repeat="item in allCommunity">
                       <div class="col-sm-3 padd-7">
                           <video style="width: 162px; height: 156px;" ng-show="item.medialType==1" controls="controls" name="Video Name" src="{{item.medialUrl | trustUrl}}"></video>
-                        <img ng-show="item.medialType==0" class="img-responsive" style="height: 162px;width: 100%;" ng-src="{{item.artistId.profileImage}}" onerror="images/profile-5-active.png" />
+                        <img ng-show="item.medialType==0" class="img-responsive" style="height: 162px;width: 100%;" ng-src="{{item.medialUrl}}" onerror="images/profile-5-active.png" />
                       </div>
                       <div class="col-sm-9 padd-7">
                         <div class="col-sm-12 padd-0">
@@ -257,8 +257,8 @@
 <!--Linkld artist Adds Modal -->
 <div class="modal fade bs-example-modal-lg write-post-modal" id="write-post-modal-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body" style="height: 380px;">
+    <div class="modal-content" id="divModalComunity">
+      <div class="modal-body" style="height: 490px;">
         <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">X</span>
         </button>
@@ -303,10 +303,59 @@
           <div class="col-sm-1"></div>
           <div class="col-sm-5">
             <p class="write-post-upload">
-              <a href="" id="write-post-upload-img">
-                <i class="fa fa-picture-o" aria-hidden="true"></i> Upload Video/Image</a>
+              <a href="" id="write-post-upload-img" style="display: none;">
+                <i class="fa fa-picture-o" aria-hidden="true"></i> Upload Video</a>
             </p>
-            <input  id="imgupload" onchange="angular.element(this).scope().communityImageUplaod(this,'imgupload')"  type="file" >
+            <input style="display: none;" id="imgupload" onchange="angular.element(this).scope().communityImageUplaod(this,'imgupload')"  type="file" >
+            <script src="../js/cropper/imagecropper.js"></script>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <label class="cabinet center-block">
+                    <figure>
+                      <img src="images/upload-img.png" style="height: 132px;" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                      <figcaption>
+                        <i class="fa fa-camera"></i>
+                      </figcaption>
+                    </figure>
+                    <input type="file" class="item-img file center-block" name="file_photo" id="imgUploadvideo" />
+                    <span style="margin-top: 8px;
+                    position: absolute;
+                    color: #f42603;">
+                      image ratio must be between  150x200 to better displaying
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                      <!-- <?=multiLanguage( "Edit Foto" , "Edit Photo" )?> -->
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    <div id="upload-demo" class="center-block"></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" data-prop="myAdd" id="cropImageBtn" class="btn btn-primary">Crop</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
           </div>
         </div>
         <div class="col-sm-12 write-post-sec">
