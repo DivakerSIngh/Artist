@@ -65,7 +65,7 @@
                   </div>
                   <div class="col-md-8 col-sm-12 padd-5">
                     <p class="input-lable">Ad Description</p>
-                    <textarea class="form-control my-input" ng-model="myAdd.about" rows="4"></textarea>
+                    <textarea class="form-control my-input" maxlength="150" ng-model="myAdd.about" rows="4"></textarea>
                   </div>
                   <div class="col-md-4 col-sm-12">
                     <img class="upload-new-img" style="display: none;" src="{{myAdd.mediaData[0].mediaUrl}}" ng-show="myAdd.mediaData[0].mediaUrl">
@@ -160,11 +160,11 @@
                           <p class="adds-date">Link Artist : <span>10</span></p>
                           <div class="add-menu">
                             <a href=""><i class="glyphicon glyphicon-option-vertical"></i></a>
-                            <ul class="adds-menu-list" ng-show="false">
-                              <li><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Edit this
-                                  AD</a></li>
-                              <li><a href=""><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp; Cancle this
-                                  AD</a></li>
+                            <ul class="adds-menu-list" >
+                              <li><a ng-click="deleteAdds()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Delete
+                                  </a></li>
+                              <!-- <li><a href=""><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp; Cancle this
+                                  AD</a></li> -->
                             </ul>
                           </div>
                         </div>
@@ -209,7 +209,10 @@
                 <div class="col-sm-12 padd-0 scroll-right hight-list mCustomScrollbar" data-mcs-theme="minimal-dark">
                   
                   <div class="col-sm-12 near-adds-list padd-0 active" ng-repeat="item in saveLinkArray | filter:title">
-                    <div class="col-sm-5 padd-7"><img class="img-responsive" style="height: 139px;width: 230px;" ng-src="{{item.userId.profileImage}}" /></div>
+                    <div class="col-sm-5 padd-7">
+                       
+                      <img class="img-responsive" onerror="images/profile-5-active.png" style="height: 139px;width: 230px;" ng-src="{{item.mediaData[0].mediaUrl}}" />
+                    </div>
                     <div class="col-sm-7 padd-7">
                       <div class="col-sm-12 padd-0">
                         <div class="col-sm-6 padd-7">
@@ -630,14 +633,24 @@
     </div>
   </div>
 </div> -->
-
+<style>
+  .gmnoprint{
+    display: none;
+  }
+</style>
 <div class="modal fade sign-modal" id="map-open-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="min-height: 498px;">
+    <div class="modal-content" style="height: 522px;min-height: 522px;">
       <div class="modal-body">
         <input id="pac-input" class="form-control my-input max-width-input" type="text" placeholder="Search Box"
           ng-show="isMapOpen">
         <div id="map" style="width:100%;height:450px;" ng-show="isMapOpen"></div>
+        
+        <input  onclick='$("#map-open-id").modal("hide");'  type="button" value="Select" class="form-control" style="background: #15d4a0;
+        color: white;
+        width: 100px;
+        float: right;
+        margin-top: 10px;" />
       </div>
     </div>
   </div>

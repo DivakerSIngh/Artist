@@ -258,7 +258,7 @@ $scope.myMap=function() {
 var x = document.getElementById("demo");
 
 function getLocation() {
-  
+  debugger
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(geoData) {
     var mapCanvas = document.getElementById("map");
@@ -269,6 +269,7 @@ function getLocation() {
  var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('pac-input'));
     google.maps.event.addListener(searchBox, 'places_changed', function() {
+      debugger
      searchBox.set('map', null);
      var places = searchBox.getPlaces();
      var bounds = new google.maps.LatLngBounds();
@@ -290,11 +291,11 @@ function getLocation() {
        $scope.locationName=place.formatted_address;;
        $scope.myAdd.lat= marker.position.lat();
        $scope.myAdd.long= marker.position.lng();
-       $scope.isMapOpen=false;
+       //$scope.isMapOpen=false;
        //document.getElementById("serachResult").value = $scope.locationName;
        //document.getElementById("map").style.display ="none";
        $scope.$apply()
-       $("#map-open-id").modal('hide')
+       
        }(place));
      }
      map.fitBounds(bounds);
@@ -306,7 +307,7 @@ function getLocation() {
     if(markers.length>0){
       markers[0].setMap(null)
     }
- $("#map-open-id").modal('hide')
+ //$("#map-open-id").modal('hide')
    placeMarker(map, event.latLng);
   });
 
@@ -406,15 +407,17 @@ $scope.isToggle = false;
 $scope.myAdd.share=[];
 $scope.isLinkedList=[];
 $scope.linkedArtist = function(event,index,userId){
+  debugger
   if(event=='Link'){
     $scope.isLinkedList[index]=userId;
     $scope.myAdd.share.push({"userId":userId})
     $scope.addArtistInfo.share.push({"userId":userId})
     console.log($scope.myAdd,$scope.addArtistInfo)
  }else{
-  var indexArtist = $scope.addArtistInfo.share.findIndex(function(artist) {
-  return artist.userId == userId
-})
+  var indexArtist = 
+        $scope.addArtistInfo.share.findIndex(function(artist) {
+        return artist.userId == userId
+      })
    console.log(index,userId);
         $scope.addArtistInfo.share.splice(indexArtist,1)
         $scope.myAdd.share.splice(indexArtist,1)
@@ -433,7 +436,10 @@ $(window).scroll(function() {
     }
 });
 
+$scope.deleteAdds=function(){
+debugger
 
+}
 
 $scope.createAdd= function(event){
   $('#loading').show();
@@ -456,6 +462,8 @@ $scope.createAdd= function(event){
     }).success(function(responseData) {
         console.log(responseData);
         $scope.myAdd={};
+        alert("saved successfully");//$('#item-img-output').attr('src','images/upload-new-img.png');
+        location.reload();
         $('#loading').hide();
 
     }).error(function(err){
@@ -823,9 +831,11 @@ $scope.save_add_Item=function(id,index){
 }
 
 $scope.getSaveItem = function(){
+  debugger
   $scope.isSaved=false;
   $('#loading').show();
   $http.get($rootScope.url+'api/juser/jsave-item?limit=0',{headers: {'Content-Type': 'application/json','Authorization':$rootScope.authrization,"authtoken":$localStorage.users.authtoken}}).success(function(results){
+    debugger
    $scope.saveItem=results.data;
    if($scope.saveItem==undefined){
     $scope.saveItem=[];
@@ -1214,6 +1224,15 @@ $scope.communityImageUplaod=function(test,imageId){
 
 }
 
+$scope.isimageorvideo=function(imagedata){
+    debugger
+    var ext= imagedata.split('.').pop();
+    if(ext.toUpperCase()=="MP4"){
+        return false;
+    }else{
+      return true;
+    }
+  }
 $scope.saveCommunity=function(){
 debugger
 $scope.mediaType="";
@@ -1243,6 +1262,8 @@ $('#loading').show();
     $scope.communityObject.medialUrl="";
     $('#write-post-modal-id').modal('hide');
     $('#loading').hide();
+    alert("Saved successfully");
+  
     $scope.getAllCommunity();
 }).error(function(err){
   console.log(err)

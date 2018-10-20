@@ -540,7 +540,13 @@ $(document).on('click','.share-add-img',function(){
             headers: { 'Content-Type': 'application/json', 'Authorization': $rootScope.authrization }
         }).success(function (responseData) {
             console.log(responseData.data);
-            $scope.userListData =responseData.data.slice(1,6);// responseData.data;
+            var lst=responseData.data.filter(x=>x.profileImage!="");
+            if(lst.length>4){
+                $scope.userListData =responseData.data.filter(x=>x.profileImage!="");
+            }else{
+                $scope.userListData =responseData.data;
+            }
+           
             $('#loading').hide();
         }).error(function (err) {
             $('#loading').hide();
@@ -551,9 +557,13 @@ $(document).on('click','.share-add-img',function(){
         $http.get($rootScope.url + 'api/juser/homenear-add', {
             headers: { 'Content-Type': 'application/json', 'Authorization': $rootScope.authrization }
         }).success(function (responseData) {
-
-            debugger
-            $scope.addListData  =responseData.data.slice(1,6);// responseData.data;
+            var lst=responseData.data.filter(x=>x.profileImage!="");
+            if(lst.length>4){
+                $scope.addListData =responseData.data.filter(x=>x.profileImage!="");
+            }else{
+                $scope.addListData =responseData.data;
+            }
+           // $scope.addListData  =responseData.data.slice(1,6);// responseData.data;
 
             $('#loading').hide();
         }).error(function (err) {

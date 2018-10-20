@@ -293,10 +293,15 @@
          <div class="col-sm-9 padd-0">
            <p class="artist-card-name">Other Media</p><br>
            <ul class="card-top-rest">
-             <li ng-repeat="imageurl in viewArtistsData.media">
-                {{imageurl}}
-               <img ng-if="mediaType" class="img-responsive" src="{{imageurl.url}}" />
-              
+             <!-- <li ng-repeat="imageurl in viewArtistsData.media">
+                {{imageurl.url}}
+               <img  class="img-responsive" src="{{imageurl.url}}" />
+              </li> -->
+              <li  ng-repeat="imageurl in viewArtistsData.media">
+               <img ng-show="isimageorvideo(imageurl.url)" class="img-responsive" ng-src="{{imageurl.url}}" />
+               <video style="width: 162px; height: 107px;" ng-show="!isimageorvideo(imageurl.url)" controls="controls" name="Video Name" src="{{imageurl.url | trustUrl}}"></video>
+               <!-- <video ng-show="!isimageorvideo(imageurl.url)" ng-src="{{imageurl.url}}"></video> -->
+               <!-- <img ng-if="isimageorvideo(imageurl)" class="img-responsive" src="{{imageurl.url}}" /> -->
               </li>
             <!--  <li><img class="img-responsive" src="images/video-2.jpg" /></li>
              <li><img class="img-responsive" src="images/video-3.jpg" /></li> -->
